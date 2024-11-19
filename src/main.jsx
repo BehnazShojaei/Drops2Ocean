@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NavBar from "./components/NavBar.jsx";
+import ProjectPage from "./pages/ProjectPage.jsx";
+
 
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
@@ -16,11 +18,13 @@ const router = createBrowserRouter([
     // Putting our NavBar as the main component will causes the children to render in the <Outlet />
     element: <NavBar />,
     children: [
-    { path: "/", element: <HomePage /> },
-    { path: "/about", element: <AboutPage /> },
-    { path: "/contact", element: <ContactPage /> },
-  ],
-},
+      { path: "/", element: <HomePage /> },
+      { path: "/about", element: <AboutPage /> },
+      { path: "/contact", element: <ContactPage /> },
+      { path: "/project", element: <ProjectPage /> },
+
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
