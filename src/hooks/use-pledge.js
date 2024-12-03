@@ -20,7 +20,7 @@ export default function usePledge() {
         setIsLoading(false);
       });
 
-    // This time we pass the projectId to the dependency array so that the hook will re-run if the projectId changes.
+    // This time we pass the pledgeId to the dependency array so that the hook will re-run if the pledgeId changes.
   }, [pledgeId]);
 
   return { pledge, isLoading, error };
