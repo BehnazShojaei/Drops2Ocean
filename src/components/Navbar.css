@@ -1,9 +1,28 @@
+/* General Styling for the NavBar */
 #NavBar {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+  background-color: #131594;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        column-gap: 2rem;
-        row-gap: 10px;
-      }
+/* Navigation links container */
+#NavBar nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
+/* Individual Links */
+#NavBar nav a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  transition: color 0.3
+}
+
+#NavBar nav a:hover {
+  font-weight: bold; /* Makes the text bold on hover */
+  color: #ffd700; /* Changes color to gold for better contrast */
+}

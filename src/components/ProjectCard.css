@@ -1,12 +1,37 @@
 .project-card {
-    width: 100%;
-    border: 1px solid black;
-    background-color: rgb(23, 68, 29);
-    box-shadow: 0px 0px 5px gray;
-  }
-  
-  .project-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-  }
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Ensures content stays inside */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center;
+  background-color: #ffffff; /* White background */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover effect */
+}
+
+.project-card:hover {
+  transform: translateY(-5px); /* Lifts the card slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.project-card img {
+  width: 100%; /* Make image take the full width */
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Keeps the image proportional */
+  border-bottom: 1px solid #e0e0e0; /* Separator between image and text */
+}
+
+.project-card h3 {
+  margin: 16px 0; /* Spacing above and below the title */
+  font-size: 18px; /* Readable font size */
+  color: #333333; /* Dark text color for good contrast */
+  font-weight: 600; /* Slightly bold text */
+}
+
+.project-card a {
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit text color */
+}
+
+.project-card:hover h3 {
+  color: #0066cc; /* Highlight title text on hover */
+}
