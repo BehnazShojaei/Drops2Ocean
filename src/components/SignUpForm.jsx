@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/use-auth.js";
-import postLogin from "../api/user/post-login.js";
+import postSignUp from "../api/user/post-signup.js";
 
-function LoginForm() {
 
+function SignUpForm() {
     const navigate = useNavigate();
-    const { auth, setAuth } = useAuth();
-
-
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
+        confirmPassword: "",
     });
 
     const handleChange = (event) => {
@@ -22,34 +19,28 @@ function LoginForm() {
         }));
     };
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (credentials.password !== credentials.confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
         if (credentials.username && credentials.password) {
-            postLogin(
-                credentials.username,
-                credentials.password
-            ).then((response) => {
-                window.localStorage.setItem("token", response.token);
-                setAuth({
-                    token: response.token,
-                });
-
-
-                navigate("/");
-
+            postSignUp(credentials.username, credentials.password).then(() => {
+                navigate("/login");
             });
         }
     };
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
                     id="username"
                     placeholder="Enter username"
+                    value={credentials.username}
                     onChange={handleChange}
                 />
             </div>
@@ -58,15 +49,24 @@ function LoginForm() {
                 <input
                     type="password"
                     id="password"
-                    placeholder="Password"
+                    placeholder="Enter password"
+                    value={credentials.password}
                     onChange={handleChange}
                 />
             </div>
-            <button type="submit" onClick={handleSubmit}>
-                Login
-            </button>
+            <div>
+                <label htmlFor="confirmPassword">Confirm Password:</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm password"
+                    value={credentials.confirmPassword}
+                    onChange={handleChange}
+                />
+            </div>
+            <button type="submit">Sign Up</button>
         </form>
     );
 }
 
-export default LoginForm;
+export default SignUpForm;
