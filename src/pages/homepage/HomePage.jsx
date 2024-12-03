@@ -19,7 +19,7 @@ function HomePage() {
       <div className="hero-section">
         <img src="/path-to-your-image.png" alt="Hero" className="hero-image" />
         <div className="hero-text">
-          <h1>Welcome to Our Projects</h1>
+          <h1> to Our Projects</h1>
           <p>Empowering your skills and growth through projects and learning.</p>
         </div>
       </div>
