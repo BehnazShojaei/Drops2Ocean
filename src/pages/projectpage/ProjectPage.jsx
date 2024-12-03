@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useProject from "../hooks/use-project";
+import useProject from "/src/hooks/use-project.js";
 
 function ProjectPage() {
     // Here we use a hook that comes for free in react router called `useParams` to get the id from the URL so that we can pass it to our useProject hook.

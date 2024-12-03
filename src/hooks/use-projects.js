@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import getProjects from "../api/get-projects";
+import getProjects from "../api/project/get-projects";
 
 export default function useProjects() {
   // Here we use the useState hook to create a state variable called projects and a function to update it called setProjects. We initialize the state variable with an empty array.

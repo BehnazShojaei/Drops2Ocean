@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import getProject from "../api/get-project";
+import getProject from "../api/project/get-project";
 
 export default function useProject(projectId) {
   const [project, setProject] = useState();

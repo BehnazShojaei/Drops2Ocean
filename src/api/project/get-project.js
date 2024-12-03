@@ -12,8 +12,9 @@ async function getProject(projectId) {
       const errorMessage = data?.detail ?? fallbackError;
       throw new Error(errorMessage);
     }
-  
+    
     return await response.json();
-  }
   
-  export default getProject;
+}
+  
+export default getProject;

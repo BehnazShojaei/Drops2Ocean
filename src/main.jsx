@@ -3,11 +3,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Here we import out pages
-import HomePage from "./pages/HomePage.jsx";
-import ContactPage from "./pages/ContactPage.jsx";
-import ProjectPage from "./pages/ProjectPage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-
+import HomePage from "./pages/homepage/HomePage.jsx";
+import ProjectPage from "./pages/projectpage/ProjectPage.jsx";
+import LoginPage from "./pages/userpage/LoginPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 
 
