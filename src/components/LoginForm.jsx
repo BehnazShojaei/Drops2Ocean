@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import postLogin from "/src/api/user/post-login.js";
 
-
-
 function LoginForm() {
+
     const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({
@@ -21,6 +21,7 @@ function LoginForm() {
         }));
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (credentials.username && credentials.password) {
@@ -34,6 +35,7 @@ function LoginForm() {
             });
         }
     };
+
     return (
         <form>
             <div>
@@ -57,7 +59,6 @@ function LoginForm() {
             <button type="submit" onClick={handleSubmit}>
                 Login
             </button>
-
         </form>
     );
 }
