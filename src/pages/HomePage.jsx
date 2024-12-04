@@ -1,6 +1,7 @@
-import useProjects from "../../hooks/use-projects";
-import ProjectCard from "../../components/ProjectCard";
-import "/src/pages/homepage/HomePage.css";
+import useProjects from "../hooks/use-projects";
+import ProjectCard from "../components/ProjectCard";
+import "./HomePage.css";
+import drop from "../assets/drop-into-ocean.jpg";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
@@ -14,10 +15,10 @@ function HomePage() {
   }
 
   return (
-    <div>
+    <>
       {/* Hero Section */}
       <div className="hero-section">
-        <img src="/path-to-your-image.png" alt="Hero" className="hero-image" />
+        <img src={drop} alt="a drop falling to ocean" className="hero-image" />
         <div className="hero-text">
           <h1> to Our Projects</h1>
           <p>Empowering your skills and growth through projects and learning.</p>
@@ -26,11 +27,11 @@ function HomePage() {
 
       {/* Project List Section */}
       <div id="project-list">
-        {projects.map((projectData, index) => (
-          <ProjectCard key={index} projectData={projectData} />
-        ))}
+        {projects.map((projectData, key) => {
+          <ProjectCard key={key} projectData={projectData} />;
+        })}
       </div>
-    </div>
+    </>
   );
 }
 

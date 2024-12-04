@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Here we import out pages
-import HomePage from "/src/pages/homepage/HomePage.jsx";
-import ProjectPage from "/src/pages/projectpage/ProjectPage.jsx";
-import LoginPage from "/src/pages/userpage/LoginPage.jsx";
-import NavBar from "/src/components/NavBar.jsx";
-import { AuthProvider } from "/src/components/AuthProvider.jsx";
-import SignUpForm from "/src/components/SignUpForm.jsx"; // Import the Sign-Up component
+import HomePage from "./pages/HomePage.jsx";
+import ProjectPage from "./pages/ProjectPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import NavBar from "./components/NavBar.jsx";
+import { AuthProvider } from "./components/AuthProvider.jsx";
+import SignUpForm from "./components/SignUpForm.jsx"; // Import the Sign-Up component
 
 
 // Here we create our router and tell it whats pages to render at what path

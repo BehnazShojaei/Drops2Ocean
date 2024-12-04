@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LoginForm from "/src/components/LoginForm.jsx";
-import SignUpForm from "../../components/SignUpForm";
-import "/src/pages/userpage/LoginPage.css";
+import LoginForm from "../components/LoginForm.jsx";
+import SignUpForm from "../components/SignUpForm.jsx";
+import "./LoginPage.css";
 
 function LoginPage() {
     const [showSignUp, setShowSignUp] = useState(false);
