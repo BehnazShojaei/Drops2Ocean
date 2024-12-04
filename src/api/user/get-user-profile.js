@@ -1,8 +1,13 @@
-async function getUserProfile() { 
+async function getUserProfile(token) { 
     /// I don't know what to pass as props cz userprofile will only show after login and need the auth token
     const url = `${import.meta.env.VITE_API_URL}/profile`;
 
-    const response = await fetch(url, { method: "GET" });
+    const response = await fetch(url, { method: "GET",
+        headers:{
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+     });
 
     if (!response.ok) {
         const fallbackError = "Error fetching user profile";
