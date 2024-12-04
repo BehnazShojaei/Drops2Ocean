@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import useProject from "/src/hooks/use-project.js";
-import loadingGif from "/src/assets/loading.webp";
+import useProject from "../../hooks/use-project.js";
+import loadingGif from "../../assets/loading.webp";
 
 
 function ProjectPage() {
