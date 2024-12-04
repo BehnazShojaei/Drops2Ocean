@@ -1,7 +1,7 @@
-import useProjects from "../hooks/use-projects";
-import ProjectCard from "../components/ProjectCard";
+import useProjects from "../../hooks/use-projects";
+import ProjectCard from "../../components/ProjectCard";
 import "./HomePage.css";
-import drop from "../assets/drop-into-ocean.jpg";
+import drop from "../../assets/drop1.jpeg";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
@@ -26,9 +26,11 @@ function HomePage() {
       </div>
 
       {/* Project List Section  */}
-      <div id="project-list">
+      <div id="list-title">
         <h1> Featured Projects</h1>
+      </div>
 
+      <div id="project-list">
         {projects.map((projectData, key) => {
           <ProjectCard key={key} projectData={projectData} />;
         })}
