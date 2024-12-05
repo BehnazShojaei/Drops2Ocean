@@ -9,7 +9,7 @@ import LoginPage from "./pages/userpage/LoginPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import SignUpForm from "./components/SignUpForm.jsx"; // Import the Sign-Up component
-
+import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
 
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       { path: "/project/:id", element: <ProjectPage /> },
       // { path: "*", element: <h1>404: Page Not Found</h1> },
       { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
+      {
+        path: "*", // This matches all undefined routes
+        element: <NotFoundPage />,
+      },
 
 
     ],
