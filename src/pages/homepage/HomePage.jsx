@@ -1,7 +1,7 @@
 import useProjects from "../../hooks/use-projects";
 import ProjectCard from "../../components/ProjectCard";
 import "./HomePage.css";
-import dropimage from "../../assets/drop1.jpeg";
+import dropimage from "../../assets/bannerphoto.jpg";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
