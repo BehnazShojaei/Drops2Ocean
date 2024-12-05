@@ -1,21 +1,30 @@
 import "/src/components/ProjectForm.css"
 import { useState } from "react";
-import LoginPage from "../pages/LoginPage.jsx";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth.js";
 import postProject from "../api/project/post-project.js";
+import { z } from "zod";
+import moment from "moment"
 
-function ProjectFrom(props) {
 
 
-    const [credentials, setCredentials] = useState(
-        {
-            title: "",
-            description: "",
-            goal: "",
-            image: "",
-            is_open: "",
-        }
-    )
+
+function CreateProjectFrom(props) {
+
+
+    const navigate = useNavigate();
+    const { auth, setAuth } = useAuth();
+
+    const [projectDetails, setProjectDetails] = useState({
+        projecttitle: "",
+        projectdescription: "",
+        projectgoal: "",
+        projectimage: null,
+        is_open: "true",
+        date_created: moment().toISOString(),
+    });
+
+
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -100,5 +109,6 @@ function ProjectFrom(props) {
         </>);
 }
 
+export default CreateProjectFrom;
 
 

@@ -17,3 +17,5 @@ export const AuthProvider = (props) => {
         </AuthContext.Provider>
     );
 };
+
+export default AuthProvider;

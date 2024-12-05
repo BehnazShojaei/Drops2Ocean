@@ -6,13 +6,16 @@ import dropimage from "../../assets/drop1.jpeg";
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
 
-  if (isLoading) {
-    return (<p>loading...</p>);
-  }
+  // if (isLoading) {
+  //   return (<p>loading...</p>);
+  // }
 
-  if (error) {
-    return (<p>{error.message}</p>);
-  }
+  // if (error) {
+  //   return (<p>{error.message}</p>);
+  // }
+
+  //question if i am using a hook then why i need again to check isloading and error here?
+
 
   return (
     <div>
@@ -28,9 +31,10 @@ function HomePage() {
       {/* Project List Section */}
       <div id="project-list">
         <h1> Featured projects</h1>
-        {projects.map((projectData, index) => (
-          <ProjectCard key={index} projectData={projectData} />
-        ))}
+        {/* console.log(projectData); */}
+        {projects.map((projectData, index) => {
+          return <ProjectCard key={index} projectData={projectData} />
+        })}
       </div>
     </div>
   );
