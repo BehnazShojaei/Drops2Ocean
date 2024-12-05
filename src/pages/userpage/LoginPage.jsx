@@ -44,3 +44,6 @@ function LoginPage() {
 
 // I like to add forgot password 
 export default LoginPage;
+
+
+// I like to navigate to the homepage while appear three new button on homepage navbar, one user profile, make a pledge, create a project.
