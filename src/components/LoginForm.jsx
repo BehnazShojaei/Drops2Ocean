@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth.js";
 import postLogin from "../api/user/post-login.js";
 import { z } from "zod";
+import { saveToken } from "../api/utils/localStorageUtils.js";
+
 
 function LoginForm() {
 
@@ -40,13 +42,15 @@ function LoginForm() {
             }
             return;
         } else {
-            postLogin(result.data.username, result.data.password).then((response) => {
-                window.localStorage.setItem("token", response.token);
-                setAuth({
-                    token: response.token,
+
+            postLogin(result.data.username, result.data.password)
+                .then((response) => {
+                    saveToken(response.token);
+                    setAuth({
+                        token: response.token,
+                    });
+                    navigate("/");
                 });
-                navigate("/");
-            });
         }
     };
 
