@@ -7,17 +7,18 @@ import { saveToken } from "../api/utils/localStorageUtils.js";
 
 function LoginForm() {
     const navigate = useNavigate();
-    const { setAuth } = useAuth(); // Removed unused `auth`
+    const { setAuth } = useAuth(); // not sure?? unused `auth`
 
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
     });
-    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+    const [errorMessage, setErrorMessage] = useState("");
 
     const loginSchema = z.object({
         username: z.string().min(3, { message: "Username is required" }),
-        password: z.string().min(8, { message: "Password must be at least 8 characters long." }),
+        password: z.string().min(1, { message: "Password is required" }),
+
     });
 
     const handleChange = (event) => {
@@ -26,7 +27,7 @@ function LoginForm() {
             ...prevCredentials,
             [id]: value,
         }));
-        setErrorMessage(""); // Clear error message on input change
+        setErrorMessage("");
     };
 
     const handleSubmit = (event) => {
@@ -47,6 +48,7 @@ function LoginForm() {
                     token: response.token,
                 });
                 navigate("/");
+                //later navigate to userprofile page! 
             })
             .catch(() => {
                 setErrorMessage("Invalid username or password. Please try again.");
