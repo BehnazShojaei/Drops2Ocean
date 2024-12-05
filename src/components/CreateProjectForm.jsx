@@ -1,21 +1,21 @@
-import "/src/components/ProjectForm.css"
+import "./ProjectForm.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth.js";
 import postProject from "../api/project/post-project.js";
 import { z } from "zod";
-import moment from "moment"
+import moment from "moment";
 
 
 
 
-function CreateProjectFrom(props) {
+function CreateProjectForm(props) {
 
 
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
 
-    const [projectDetails, setProjectDetails] = useState({
+    const [project, setProject] = useState({
         projecttitle: "",
         projectdescription: "",
         projectgoal: "",
@@ -24,26 +24,24 @@ function CreateProjectFrom(props) {
         date_created: moment().toISOString(),
     });
 
-
+    const projectSchema = z.object({
+        projecttitle: z.string().min(1, { message: "Title must not be empty" }),
+        projectgoal: z.string().regex(/^\d+$/, { message: "Goal must be a positive integer" }),
+        projectdescription: z.string().min(3, { message: "Description must not be empty" }),
+        // projectimage: z.instanceof(File).optional(),
+    });
 
     const handleChange = (event) => {
         const { id, value } = event.target;
-        setCredentials((prevCredentials) => ({
-            ...prevCredentials,
+        setProject((prevProject) => ({
+            ...prevProject,
             [id]: value,
         }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (credentials.username && credentials.password) {
-            postLogin(
-                credentials.username,
-                credentials.password
-            ).then((response) => {
-                console.log(response);
-            });
-        }
+
     };
 
     return (
@@ -109,6 +107,6 @@ function CreateProjectFrom(props) {
         </>);
 }
 
-export default CreateProjectFrom;
+export default CreateProjectForm;
 
 

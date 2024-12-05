@@ -15,7 +15,7 @@ function HomePage() {
   }
 
   //question if i am using a hook then why i need again to check isloading and error here?
-  //cz the hook is not handling rendering. it only provide data and state
+  //cz the hook is not handling rendering. it only provide data and state and here we decide what to do with them
 
 
   return (
