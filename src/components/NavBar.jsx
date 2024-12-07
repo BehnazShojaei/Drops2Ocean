@@ -7,6 +7,7 @@ import { useAuth } from "../hooks/use-auth.js";
 function NavBar() {
   const { auth, setAuth } = useAuth();
 
+
   const handleLogout = () => {
     window.localStorage.removeItem("token");
     setAuth({ token: null });
@@ -21,8 +22,20 @@ function NavBar() {
             Log Out
           </Link>) : (
           <Link to="/login">Login</Link>
+
         )}
 
+
+        {auth.token ? (
+          <>
+            <Link to="/createproject">Create a project</Link>
+            <Link to="/pledge">Pledge</Link>
+          </>
+        ) :
+          null
+        }
+
+        {/* // make create project in homepage and make a pledge */}
       </nav>
       {/* React Router will pass components into the <Outlet /> based on the path */}
       <Outlet />

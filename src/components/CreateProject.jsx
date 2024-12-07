@@ -1,15 +1,16 @@
-import "./ProjectForm.css"
+import "./CreateProject.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth.js";
-import postProject from "../api/project/post-project.js";
 import { z } from "zod";
-import moment from "moment";
+import postProject from "../api/project/post-project.js";
 
 
 
 
-function CreateProjectForm(props) {
+
+
+function CreateProject(props) {
 
 
     const navigate = useNavigate();
@@ -21,14 +22,14 @@ function CreateProjectForm(props) {
         projectgoal: "",
         projectimage: null,
         is_open: "true",
-        date_created: moment().toISOString(),
+        date_created: new Date().toISOString(),
     });
 
     const projectSchema = z.object({
         projecttitle: z.string().min(1, { message: "Title must not be empty" }),
-        projectgoal: z.coerce.number().int()
+        projectgoal: z.coerce.number().int(),
         projectdescription: z.string().min(3, { message: "Description must not be empty" }),
-        // projectimage: z.instanceof(File).optional(),
+        projectimage: z.instanceof(File).optional(),
     });
 
     const handleChange = (event) => {
@@ -41,6 +42,13 @@ function CreateProjectForm(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const result = projectSchema.safeParse(project);
+
+        if (!result.success) {
+
+        }
+
 
     };
 
@@ -94,6 +102,8 @@ function CreateProjectForm(props) {
                         id="image"
                         placeholder="Image url"
                         onChange={handleChange}
+
+                    // add the logic to accept an upload image
                     />
                 </div>
 
@@ -107,6 +117,6 @@ function CreateProjectForm(props) {
         </>);
 }
 
-export default CreateProjectForm;
+export default CreateProject;
 
 

@@ -8,9 +8,10 @@ import ProjectPage from "./pages/projectpage/ProjectPage.jsx";
 import LoginPage from "./pages/userpage/LoginPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-import SignUpForm from "./components/SignUpForm.jsx"; // Import the Sign-Up component
+import SignUpForm from "./components/SignUpForm.jsx";
 import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
-
+// import Pledge from "./components/Pledge.jsx"
+import NewProjectPage from "./pages/projectpage/NewProjectPage.jsx";
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
   // These are the three routes!
@@ -23,16 +24,17 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/project/:id", element: <ProjectPage /> },
       // { path: "*", element: <h1>404: Page Not Found</h1> },
-      { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
+      // { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
+
       {
         path: "*", // This matches all undefined routes
         element: <NotFoundPage />,
       },
+      { path: "/new-project-page", element: <NewProjectPage /> },
+      // { path: "/pledge", element: < Pledge /> },
+    ]
 
-
-    ],
-  },
-]);
+  }]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

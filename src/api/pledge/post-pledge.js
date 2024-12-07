@@ -1,6 +1,16 @@
+// define the token here out of asyn function 
+
+
 async function postPledge() {
     // First we create the URL for the request by using the Vite environment variable and the API endpoint.
+   
+   
+   
     const url = `${import.meta.env.VITE_API_URL}/pledges`;
+
+
+    // the request body 
+    // search on reload page in react
 
     const response = await fetch(url, { method: "POST" });
 

@@ -58,11 +58,11 @@ Currently, two official plugins are available:
 - [] make a pledge form
 - [] footer component
 - [] loading spinner component
+- [] change login button to loading and navigate back to homepage
+- []check on my
 - []
-- []
-- []
-- []
-- []
+- []Create project working
+- []make a pledge working
 - []
 - []
 - []

@@ -12,11 +12,7 @@ function SignUpForm() {
         confirmPassword: "",
     });
 
-    const [errorMessage, setErrorMessage] = useState({
-        username: "",
-        password: "",
-        confirmPassword: "",
-    });
+    const [errorMessage, setErrorMessage] = useState("");
 
     const signUpSchema = z.object({
         username: z.string().min(3, { message: "Username must be at least 3 characters long." }),
@@ -47,10 +43,7 @@ function SignUpForm() {
 
         if (!result.success) {
             const error = result.error.errors[0];
-            setErrorMessage((prevState) => ({
-                ...prevState,
-                [error.path[0]]: errorMessage
-            }));
+            setErrorMessage(error.message);
             return;
         }
 
@@ -64,6 +57,7 @@ function SignUpForm() {
 
     return (
         <form onSubmit={handleSubmit}>
+            {errorMessage}
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -73,7 +67,6 @@ function SignUpForm() {
                     value={credentials.username}
                     onChange={handleChange}
                 />
-                {errorMessage.username ? <div>{errorMessage.username}</div> : null}
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
@@ -88,7 +81,7 @@ function SignUpForm() {
             <div>
                 <label htmlFor="confirmPassword">Confirm Password:</label>
                 <input
-                    type="password"
+                    type="confirmPassword"
                     id="confirmPassword"
                     placeholder="Confirm password"
                     value={credentials.confirmPassword}

@@ -48,7 +48,7 @@ function LoginForm() {
                     token: response.token,
                 });
                 navigate("/");
-                //later navigate to userprofile page! 
+                //navigate to homepage and appear buttons for make project, pledge and userprofile
             })
             .catch(() => {
                 setErrorMessage("Invalid username or password. Please try again.");
