@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         path: "*", // This matches all undefined routes
         element: <NotFoundPage />,
       },
-      { path: "/new-project-page", element: <NewProjectPage /> },
+      { path: "/projects", element: <projects /> },
       // { path: "/pledge", element: < Pledge /> },
 
       // 
