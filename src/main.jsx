@@ -32,6 +32,8 @@ const router = createBrowserRouter([
       },
       { path: "/new-project-page", element: <NewProjectPage /> },
       // { path: "/pledge", element: < Pledge /> },
+
+      // 
     ]
 
   }]);

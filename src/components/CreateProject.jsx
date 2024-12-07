@@ -45,12 +45,20 @@ function CreateProject(props) {
 
         const result = projectSchema.safeParse(project);
 
-        if (!result.success) {
-
+        if (!result.success) { 
+            const error = result.error.errors?.[0];
+            if (error) {
+                setErrorMessage(error.message);
+            }
+            return;
         }
-
-
     };
+
+
+
+    postCreate(
+        result.projecttitle, result.
+    )
 
     return (
         <>
@@ -107,13 +115,13 @@ function CreateProject(props) {
                     />
                 </div>
 
-                <button type="submit" onClick={handleSubmit}>
-                    Login
+                <button type="create" onClick={handleSubmit}>
+                    create
                 </button>
 
             </form>
-            <p>
-                Don't have an account? <Link to="/signup">Sign Up</Link> </p>
+            {/* <p>
+                Don't have an account? <Link to="/signup">Sign Up</Link> </p> */}
         </>);
 }
 

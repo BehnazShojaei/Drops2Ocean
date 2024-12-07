@@ -1,3 +1,4 @@
+
 async function postProject() {
     // First we create the URL for the request by using the Vite environment variable and the API endpoint.
     const url = `${import.meta.env.VITE_API_URL}/projects`;
