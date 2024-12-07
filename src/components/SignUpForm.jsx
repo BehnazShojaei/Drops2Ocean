@@ -12,7 +12,11 @@ function SignUpForm() {
         confirmPassword: "",
     });
 
-    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState({
+        username: "",
+        password: "",
+        confirmPassword: "",
+    });
 
     const signUpSchema = z.object({
         username: z.string().min(3, { message: "Username must be at least 3 characters long." }),
@@ -25,7 +29,7 @@ function SignUpForm() {
     }).refine((data) => data.password === data.confirmPassword, {
         message: "Passwords do not match.",
         path: ["confirmPassword"], // Attach error to confirmPassword
-    });
+    })
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -43,7 +47,10 @@ function SignUpForm() {
 
         if (!result.success) {
             const error = result.error.errors[0];
-            setErrorMessage(error.message);
+            setErrorMessage((prevState) => ({
+                ...prevState,
+                [error.path[0]]: errorMessage
+            }));
             return;
         }
 
@@ -66,6 +73,7 @@ function SignUpForm() {
                     value={credentials.username}
                     onChange={handleChange}
                 />
+                {errorMessage.username ? <div>{errorMessage.username}</div> : null}
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
@@ -93,3 +101,6 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
+
+
+// i want to add on sign up successful login page show up! or decide if you want to already sign in?

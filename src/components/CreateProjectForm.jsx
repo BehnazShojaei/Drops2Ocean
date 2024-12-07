@@ -26,7 +26,7 @@ function CreateProjectForm(props) {
 
     const projectSchema = z.object({
         projecttitle: z.string().min(1, { message: "Title must not be empty" }),
-        projectgoal: z.string().regex(/^\d+$/, { message: "Goal must be a positive integer" }),
+        projectgoal: z.coerce.number().int()
         projectdescription: z.string().min(3, { message: "Description must not be empty" }),
         // projectimage: z.instanceof(File).optional(),
     });

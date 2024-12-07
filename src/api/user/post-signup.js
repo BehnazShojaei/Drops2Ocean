@@ -22,7 +22,7 @@ async function postSignUp(username, password) {
             const errorData = await response.json().catch(() => {
                 throw new Error("Failed to parse error message.");
             });
-            const errorMessage = errorData?.detail || "Sign-up failed. Please try again.";
+            const errorMessage = errorData?.detail ?? "Sign-up failed. Please try again.";
             throw new Error(errorMessage);
         }
 
