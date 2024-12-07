@@ -1,33 +1,34 @@
-import getToken from "../utils/localStorageUtils"
-const token = getToken(); // Retrieve the token from local storage or state
+import { getToken }from "../utils/localStorageUtils";
 
-
-async function postProject(formData, token) {
-
+async function postProject(formData) {
+    const token = getToken(); // Retrieve the token from local storage
     const url = `${import.meta.env.VITE_API_URL}/projects`;
 
-
     try {
-        const response = await fetch(url, { method: "POST" }, headers: { "Content-Type": "application/json", Authorization : `Token $t{oken}`,      body: formData,
-        } );
-
-    if (!response.ok) {
-        const fallbackError = "Error trying to create a project";
-
-        const data = await response.json().catch(() => {
-            throw new Error(fallbackError);
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+            body: formData, // FormData will handle content-type automatically for file uploads
         });
-        const errorMessage = data?.detail ?? fallbackError;
-        throw new Error(errorMessage);
-    } 
 
-    return await response.json();
-}
-}
+        if (!response.ok) {
+            const fallbackError = "Error trying to create a project";
 
+            const data = await response.json().catch(() => {
+                throw new Error(fallbackError);
+            });
+
+            const errorMessage = data?.detail ?? fallbackError;
+            throw new Error(errorMessage);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error in postProject:", error.message);
+        throw error;
+    }
+}
 
 export default postProject;
-
-    
-
-        

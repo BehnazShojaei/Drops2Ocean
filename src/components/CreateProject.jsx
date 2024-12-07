@@ -22,7 +22,7 @@ function CreateProject() {
         date_created: new Date().toISOString(),
     });
 
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
 
@@ -41,16 +41,15 @@ function CreateProject() {
 
     const handleChange = (event) => {
         const { id, value, files, type } = event.target;
-        setProjectDetail((prev => ({
+        setProjectDetail((prev) => ({
             ...prev,
             [id]: type === "file" ? files[0] : value, // Handle file input separately
         }));
     };
 
-
     const handleSubmit = async (event) => {
         event.preventDefault(); //avoid default submission
-        setErrorMessages(null);
+        setErrorMessages([]);
         setIsSubmitting(true);
 
         const result = projectSchema.safeParse(projectDetail); //check error with zod
@@ -91,7 +90,6 @@ function CreateProject() {
         }
     };
 
-
     //     const MAX_FILE_SIZE = 500000;
     // const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
@@ -107,64 +105,69 @@ function CreateProject() {
     // });
 
 
-
     return (
         <div className="create-project">
             <h1>Create a New Project</h1>
-            {errorMessages && <p style={{ color: "red" }}>{errorMessages.map((msg, index) => (<li key={index}>{msg}</li></li>))}</p>}
+            {errorMessages.length > 0 && (
+                <ul style={{ color: "red" }}>
+                    {errorMessages.map((msg, index) => (
+                        <li key={index}>{msg}</li>
+                    ))}
+                </ul>
+            )}
 
-<form onSubmit={handleSubmit}>
-    <div>
-        <label htmlFor="projecttitle">Title:</label>
-        <input
-            type="text"
-            id="projecttitle"
-            placeholder="Enter project title"
-            value={projectDetail.projecttitle}
-            onChange={handleChange}
-            required
-        />
-    </div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="projecttitle">Title:</label>
+                    <input
+                        type="text"
+                        id="projecttitle"
+                        placeholder="Enter project title"
+                        value={projectDetail.projecttitle}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
 
-    <div>
-        <label htmlFor="projectdescription">Description:</label>
-        <textarea
-            type="text"
-            id="projectdescription"
-            placeholder="Enter project description"
-            onChange={handleChange}
-            value={projectDetail.projectdescription}
-            required
-        ></textarea>
+                <div>
+                    <label htmlFor="projectdescription">Description:</label>
+                    <textarea
+                        type="text"
+                        id="projectdescription"
+                        placeholder="Enter project description"
+                        onChange={handleChange}
+                        value={projectDetail.projectdescription}
+                        required
+                    ></textarea>
 
-    </div>
+                </div>
 
-    <div>
-        <label htmlFor="projectgoal">Goal:</label>
-        <input
-            type="number"
-            id="projectgoal"
-            placeholder="Enter project goal"
-            onChange={handleChange}
-            value={projectDetail.projectgoal}
-            required
-        />
-    </div>
+                <div>
+                    <label htmlFor="projectgoal">Goal:</label>
+                    <input
+                        type="number"
+                        id="projectgoal"
+                        placeholder="Enter project goal"
+                        onChange={handleChange}
+                        value={projectDetail.projectgoal}
+                        required
+                    />
+                </div>
 
-    <div>
-        <label htmlFor="projectimage">Upload Image:</label>
-        <input
-            type="file"
-            id="projectimage"
-            accept="image/jpeg, image/png, image/webp"
-            onChange={handleChange}
-        />
-    </div>
+                <div>
+                    <label htmlFor="projectimage">Upload Image:</label>
+                    <input
+                        type="file"
+                        id="projectimage"
+                        accept="image/jpeg, image/png, image/webp"
+                        onChange={handleChange}
+                    />
+                </div>
 
-    <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Submitting..." : "Create"}
-    </button></form>
-        </div > 
+                <button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Create"}
+                </button></form>
+        </div >
     );
 }
 
