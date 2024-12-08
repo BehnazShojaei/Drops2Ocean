@@ -23,14 +23,14 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/project/:id", element: <ProjectPage /> },
-      // { path: "*", element: <h1>404: Page Not Found</h1> },
+      { path: "*", element: <h1>404: Page Not Found</h1> },
       // { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
 
       {
         path: "*", // This matches all undefined routes
         element: <NotFoundPage />,
       },
-      { path: "/projects", element: <projects /> },
+      { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line
       // { path: "/pledge", element: < Pledge /> },
 
       // 

@@ -7,12 +7,9 @@ function NewProjectPage() {
 
 
     return (
-        <>
-            <div className="new-project-page">
-                <CreateProject />
-            </div>
-
-        </>
+        <div className="new-project-page">
+            <CreateProject />
+        </div>
     )
 }
 

@@ -1,14 +1,16 @@
 import { getToken }from "../utils/localStorageUtils";
 
 async function postProject(formData) {
-    const token = getToken(); // Retrieve the token from local storage
     const url = `${import.meta.env.VITE_API_URL}/projects`;
+    const token = getToken(); // Retrieve the token from local storage
 
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
                 Authorization: `Token ${token}`,
+                // console.log(getToken())
+
             },
             body: formData, // FormData will handle content-type automatically for file uploads
         });
