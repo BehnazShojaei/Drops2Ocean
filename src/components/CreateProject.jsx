@@ -56,13 +56,19 @@ function CreateProject() {
     // });
 
     const handleChange = (event) => {
+<<<<<<< HEAD
         // const { id, value, files, type } = event.target;
+=======
+>>>>>>> develop
         const { id, value, files, type } = event.target;
 
         setProjectInfo((prev) => ({
             ...prev,
             [id]: type === "file" ? files[0] : value, // Handle file input separately
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
         }));
     };
 
