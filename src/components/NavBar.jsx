@@ -1,11 +1,6 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../components/Navbar.css";
 import { useAuth } from "../hooks/use-auth.js";
-<<<<<<< HEAD
-import { clearToken } from "../api/utils/localStorageUtils.js";
-import { Navigate } from "react-router-dom";
-=======
->>>>>>> develop
 
 
 function NavBar() {

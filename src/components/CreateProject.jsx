@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth.js";
 import { z } from "zod";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 function CreateProject() {
@@ -34,41 +34,23 @@ function CreateProject() {
         projectdescription: z.string().min(3, { message: "Description required" }),
         projectimage:
             z.instanceof(File)
-                .optional()
-                .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
-                .refine((files) => ACCEPTED_IMAGE_TYPES.includes(file.type), ".jpg, .jpeg, .png and .webp files are accepted."),
-
-        //this is an optional field, 
+                .optional()        //this is an optional field, 
+        // .refine((file) => (file ?? true) && file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+        // .refine(
+        //     (file) => (file ?? true) && ACCEPTED_IMAGE_TYPES.includes(file.type),
+        //     "Accepted file types: .jpg, .jpeg, .png, and .webp"
+        // ),
     });
 
-    //     const MAX_FILE_SIZE = 500000;
-    // const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
-    // const RegistrationSchema = z.object({
-    //   profileImage: z
-    //     .any()
-    //     .refine((files) => files?.length == 1, "Image is required.")
-    //     .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
-    //     .refine(
-    //       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-    //       ".jpg, .jpeg, .png and .webp files are accepted."
-    //     ),
-    // });
 
     const handleChange = (event) => {
-<<<<<<< HEAD
-        // const { id, value, files, type } = event.target;
-=======
->>>>>>> develop
         const { id, value, files, type } = event.target;
 
         setProjectInfo((prev) => ({
             ...prev,
-            [id]: type === "file" ? files[0] : value, // Handle file input separately
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
+            [id]: type === "file" ? files[0] : value,
+            //if there is a file upload it, this could be a place where we enaable multiple or single upload. 
         }));
     };
 
@@ -76,15 +58,13 @@ function CreateProject() {
 
     const handleSubmit = async (event) => {
         event.preventDefault(); //avoid default submission
-        setErrorMessage([]);
+        setErrorMessage([]); //initialize
         setIsSubmitting(true);
-
         const result = projectSchema.safeParse(projectInfo); //check error with zod
 
         if (!result.success) {
 
             const errors = result.error.errors.map((err) => err.message);
-
             setErrorMessage(errors);
             setIsSubmitting(false);
             return;
@@ -119,8 +99,10 @@ function CreateProject() {
         }
     };
 
+    //I decided to make upload image optional should take care of this section for conditional
 
 
+    // now time to change backend to accept upload and not the url lol I regret exploring this option bad time management behnaz joon
 
     return (
         <div className="create-project">

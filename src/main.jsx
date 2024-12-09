@@ -24,19 +24,13 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/project/:id", element: <ProjectPage /> },
       { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line
-<<<<<<< HEAD
-      { path: "*", element: <h1>404: Page Not Found</h1> },
-      { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
 
-
-=======
       // { path: "*", element: <h1>404: Page Not Found</h1> },
       { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
       {
         path: "*", // This matches all undefined routes
         element: <NotFoundPage />,
       },
->>>>>>> develop
       // { path: "/pledge", element: < Pledge /> },
 
     ]

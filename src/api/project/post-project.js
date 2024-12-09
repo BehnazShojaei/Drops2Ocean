@@ -11,7 +11,7 @@ async function postProject(formData) {
                 Authorization: `Token ${token}`,
 
             },
-            body: formData, // FormData will handle content-type automatically for file uploads
+            body: formData, 
         });
 
 
