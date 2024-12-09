@@ -10,7 +10,7 @@ import NavBar from "./components/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import SignUpForm from "./components/SignUpForm.jsx";
 import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
-// import Pledge from "./components/Pledge.jsx"
+import MakePledgeForm from "./components/PledgeForm.jsx";
 import NewProjectPage from "./pages/projectpage/NewProjectPage.jsx";
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         path: "*", // This matches all undefined routes
         element: <NotFoundPage />,
       },
-      // { path: "/pledge", element: < Pledge /> },
+      { path: "/pledge", element: < MakePledgeForm /> },
 
     ]
 

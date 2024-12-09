@@ -29,9 +29,6 @@ function LoginPage() {
                     </button>
                 )}
 
-
-
-
                 {/* Show the SignUpForm if showSignUp is true */}
                 {showSignUp && (
                     <div className="signup-form">

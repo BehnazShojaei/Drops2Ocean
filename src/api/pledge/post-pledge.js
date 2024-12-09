@@ -1,38 +1,32 @@
-// define the token here out of asyn function ???
-
-
-async function postPledge() {
-    // First we create the URL for the request by using the Vite environment variable and the API endpoint.
-   
-   
-   
+async function postPledge(formData) {
+    
     const url = `${import.meta.env.VITE_API_URL}/pledges`;
-    const token = window.localStorage.getItem("token");// Retrieve the token from local storage
+    const token = window.localStorage.getItem("token");
 
 
-    // the request body 
-    // search on reload page in react
 
-    const response = await fetch(url, {
+    try {
+        
+        const response = await fetch(url, {
         method: "POST",
         headers: {
             "Authorization": `Token ${token}`,
-            "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-    });
-
-    if (!response.ok) {
-        const fallbackError = `Error making a pledge`;
-
-        const data = await response.json().catch(() => {
-            throw new Error(fallbackError);
+        body: formData, // can i only pass formData
         });
-        const errorMessage = data?.detail ?? fallbackError;
-        throw new Error(errorMessage);
-    }
-    
-    return await response.json();
+        if (!response.ok) {
+            const fallbackError = `Error making a pledge`;
+            const data = await response.json().catch(() => {
+                throw new Error(fallbackError);
+            });
+
+            const errorMessage = data?.detail ?? fallbackError;
+            throw new Error(errorMessage);
+        }
+        return await response.json();
+    }catch (error) {
+        console.error("Error in postPledge:", error.message);throw error;
+  }
 }
 
 export default postPledge;
