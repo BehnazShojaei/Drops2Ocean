@@ -1,4 +1,5 @@
 // define the token here out of asyn function 
+import { getToken }from "../utils/localStorageUtils";
 
 
 async function postPledge() {
@@ -7,12 +8,18 @@ async function postPledge() {
    
    
     const url = `${import.meta.env.VITE_API_URL}/pledges`;
+    const token = getToken(); // Retrieve the token from local storage
 
 
     // the request body 
     // search on reload page in react
 
-    const response = await fetch(url, { method: "POST" });
+    const response = await fetch(url, { method: "POST" }, headers: {
+        Authorization: `Token ${token}`,
+        // console.log(getToken())
+
+    },
+    body: formData, );
 
     if (!response.ok) {
         const fallbackError = `Error making a pledge`;

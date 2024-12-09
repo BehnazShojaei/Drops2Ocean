@@ -27,11 +27,11 @@ function NavBar() {
 
           )}
 
-
           {auth.token ? (
             <>
-              <Link to="/projects">Create a project</Link>
-              <Link to="/pledge">Pledge</Link>
+              <Link to="/newproject">Create a project</Link>
+
+              {/* <Link to="/pledge">Pledge</Link> */}
             </>
           ) :
             null

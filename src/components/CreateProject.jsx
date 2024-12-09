@@ -2,7 +2,7 @@ import postProject from "../api/project/post-project.js";
 import "./CreateProject.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../hooks/use-auth.js";
+import { useAuth } from "../hooks/use-auth.js";
 import { z } from "zod";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -32,11 +32,11 @@ function CreateProject() {
         projecttitle: z.string().min(1, { message: "Title required*" }),
         projectgoal: z.coerce.number().positive("Goal must be a positive number"),
         projectdescription: z.string().min(3, { message: "Description required" }),
-        // projectimage:
-        //     z.instanceof(File)
-        //         .optional()
-        //         .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
-        //         .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), ".jpg, .jpeg, .png and .webp files are accepted."),
+        projectimage:
+            z.instanceof(File)
+                .optional()
+                .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+                .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), ".jpg, .jpeg, .png and .webp files are accepted."),
 
         //this is an optional field, 
     });
@@ -59,7 +59,7 @@ function CreateProject() {
         // const { id, value, files, type } = event.target;
         const { id, value } = event.target;
 
-        setprojectInfo((prev) => ({
+        setProjectInfo((prev) => ({
             ...prev,
             // [id]: type === "file" ? files[0] : value, // Handle file input separately
             [id]: value
@@ -100,6 +100,8 @@ function CreateProject() {
 
             if (response && response.id) {
                 navigate(`/project/${response.id}`);
+
+                // after submit i want to go to project/:id 
             } else {
                 throw new Error("Project creation failed. Invalid response.");
 

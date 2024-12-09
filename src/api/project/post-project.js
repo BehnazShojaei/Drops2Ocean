@@ -9,11 +9,12 @@ async function postProject(formData) {
             method: "POST",
             headers: {
                 Authorization: `Token ${token}`,
-                // console.log(getToken())
 
             },
             body: formData, // FormData will handle content-type automatically for file uploads
         });
+
+        console.log(getToken());
 
         if (!response.ok) {
             const fallbackError = "Error trying to create a project";

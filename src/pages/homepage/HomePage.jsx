@@ -5,6 +5,7 @@ import dropimage from "../../assets/bannerphoto.jpg";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
+  console.log('gjwerioughuiwerghuiowsergbuiowerbguiobwriognoweigbniopqwegniowebgiobw');
 
   if (isLoading) {
     return (<p>loading...</p>);
