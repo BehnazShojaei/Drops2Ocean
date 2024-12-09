@@ -7,7 +7,7 @@ function LoginPage() {
     const [showSignUp, setShowSignUp] = useState(false);
 
     const handleSignUpClick = () => {
-        setShowSignUp(true);
+        setShowSignUp(!showSignUp);
     };
 
     return (

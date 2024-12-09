@@ -10,14 +10,14 @@ function ProjectCard(props) {
     const [showPledgeForm, setShowPledgeForm] = useState(false);
 
     const handlePledgeRequest = () => {
-        setShowPledgeForm(true);
+        setShowPledgeForm(!showPledgeForm);
     }
 
     return (
         <>
             <div className="project-card">
                 <Link to={projectLink}>
-                    <img src={projectData.image} />
+                    <img src={projectData.image} alt="project visual" />
                     <h3>{projectData.title}</h3>
                 </Link>
 

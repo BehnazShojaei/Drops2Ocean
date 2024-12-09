@@ -1,37 +1,23 @@
-.project-card {
-  border: 1px solid #e0e0e0; /* Light gray border */
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* Ensures content stays inside */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-align: center;
-  background-color: #ffffff; /* White background */
-  transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover effect */
+.pledge-form-container {
+  display: none;
+  transition: all 0.3s ease-in-out;
+  height: 0; /* Start with height 0, will transition */
+  overflow: hidden;
 }
 
-.project-card:hover {
-  transform: translateY(-5px); /* Lifts the card slightly */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+.pledge-form-container.active {
+  display: block;
+  height: auto; /* Allow the form to expand to fit content */
 }
 
-.project-card img {
-  width: 100%; /* Make image take the full width */
-  height: 200px; /* Fixed height for consistency */
-  object-fit: cover; /* Keeps the image proportional */
-  border-bottom: 1px solid #e0e0e0; /* Separator between image and text */
+.pledge-toggle-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
 }
 
-.project-card h3 {
-  margin: 16px 0; /* Spacing above and below the title */
-  font-size: 18px; /* Readable font size */
-  color: #333333; /* Dark text color for good contrast */
-  font-weight: 600; /* Slightly bold text */
-}
-
-.project-card a {
-  text-decoration: none; /* Remove underline from link */
-  color: inherit; /* Inherit text color */
-}
-
-.project-card:hover h3 {
-  color: #0066cc; /* Highlight title text on hover */
+.pledge-toggle-btn:hover {
+  background-color: #45a049;
 }
