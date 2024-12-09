@@ -14,12 +14,14 @@ async function postPledge() {
     // the request body 
     // search on reload page in react
 
-    const response = await fetch(url, { method: "POST" }, headers: {
-        Authorization: `Token ${token}`,
-        // console.log(getToken())
-
-    },
-    body: formData, );
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    });
 
     if (!response.ok) {
         const fallbackError = `Error making a pledge`;

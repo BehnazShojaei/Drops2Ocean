@@ -9,41 +9,40 @@ function NavBar() {
 
 
   const handleLogout = () => {
-    const { auth, setAuth } = useAuth();
-    const handleLogout = () => {
-      clearToken();
-      setAuth({ token: null }); // reset
-    };
-    return (
-      <>
-        <nav id="NavBar">
-          <Link to="/contact">Contact</Link>
-          <Link to="/">Drops2Ocean</Link>
-          {auth.token ? (
-            <Link to="/" onClick={handleLogout}>
-              Log Out
-            </Link>) : (
-            <Link to="/login">Login</Link>
+    clearToken();
+    setAuth({ token: null }); // reset
+  };
+  return (
+    <>
+      <nav id="NavBar">
+        <Link to="/contact">Contact</Link>
+        <Link to="/">Drops2Ocean</Link>
+        {auth.token ? (
+          <Link to="/" onClick={handleLogout}>
+            Log Out
+          </Link>) : (
+          <Link to="/login">Login</Link>
 
-          )}
+        )}
 
-          {auth.token ? (
-            <>
-              <Link to="/newproject">Create a project</Link>
+        {/* Conditional rendering for Login/Logout */}
 
-              {/* <Link to="/pledge">Pledge</Link> */}
-            </>
-          ) :
-            null
-          }
+        {auth.token ? (
+          <>
+            <Link to="/newproject">Create a project</Link>
 
-        </nav>
-        {/* React Router will pass components into the <Outlet /> based on the path */}
-        <Outlet />
-      </>
+            {/* <Link to="/pledge">Pledge</Link> */}
+          </>
+        ) :
+          null
+        }
 
-    );
-  }
+      </nav>
+      {/* React Router will pass components into the <Outlet /> based on the path */}
+      <Outlet />
+    </>
+
+  );
 }
 
 
