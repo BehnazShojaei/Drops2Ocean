@@ -1,8 +1,8 @@
-import { getToken }from "../utils/localStorageUtils";
 
 async function postProject(formData) {
     const url = `${import.meta.env.VITE_API_URL}/projects`;
-    const token = getToken(); // Retrieve the token from local storage
+    const token = window.localStorage.getItem("token");
+
 
     try {
         const response = await fetch(url, {
@@ -14,7 +14,6 @@ async function postProject(formData) {
             body: formData, // FormData will handle content-type automatically for file uploads
         });
 
-        console.log(getToken());
 
         if (!response.ok) {
             const fallbackError = "Error trying to create a project";

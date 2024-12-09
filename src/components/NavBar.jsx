@@ -1,22 +1,27 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../components/Navbar.css";
 import { useAuth } from "../hooks/use-auth.js";
 import { clearToken } from "../api/utils/localStorageUtils.js";
+import { Navigate } from "react-router-dom";
 
 
 function NavBar() {
   const { auth, setAuth } = useAuth();
-
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    clearToken();
+    window.localStorage.removeItem("token");
     setAuth({ token: null }); // reset
+    navigate("/");
   };
+
+
   return (
     <>
       <nav id="NavBar">
         <Link to="/contact">Contact</Link>
         <Link to="/">Drops2Ocean</Link>
+
         {auth.token ? (
           <Link to="/" onClick={handleLogout}>
             Log Out
@@ -24,26 +29,13 @@ function NavBar() {
           <Link to="/login">Login</Link>
 
         )}
-
-        {/* Conditional rendering for Login/Logout */}
-
-        {auth.token ? (
-          <>
-            <Link to="/newproject">Create a project</Link>
-
-            {/* <Link to="/pledge">Pledge</Link> */}
-          </>
-        ) :
-          null
-        }
-
+        {auth.token && <Link to="/newproject">Create a project</Link>}
       </nav>
-      {/* React Router will pass components into the <Outlet /> based on the path */}
+
+      {/* Child components will render here */}
       <Outlet />
     </>
-
   );
 }
-
 
 export default NavBar;

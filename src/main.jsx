@@ -8,7 +8,7 @@ import ProjectPage from "./pages/projectpage/ProjectPage.jsx";
 import LoginPage from "./pages/userpage/LoginPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-// import SignUpForm from "./components/SignUpForm.jsx";
+import SignUpForm from "./components/SignUpForm.jsx";
 import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
 // import Pledge from "./components/Pledge.jsx"
 import NewProjectPage from "./pages/projectpage/NewProjectPage.jsx";
@@ -21,15 +21,13 @@ const router = createBrowserRouter([
     element: <NavBar />,
     children: [
       { path: "/", element: <HomePage /> },
-      // { path: "/login", element: <LoginPage /> },
-      // { path: "/project/:id", element: <ProjectPage /> },
-      // { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line
-      // { path: "*", element: <h1>404: Page Not Found</h1> },
-      // { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
-      // {
-      //   path: "*", // This matches all undefined routes
-      //   element: <NotFoundPage />,
-      // },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/project/:id", element: <ProjectPage /> },
+      { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line
+      { path: "*", element: <h1>404: Page Not Found</h1> },
+      { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
+
+
       // { path: "/pledge", element: < Pledge /> },
       // 
     ]

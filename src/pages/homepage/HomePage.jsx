@@ -5,7 +5,6 @@ import dropimage from "../../assets/bannerphoto.jpg";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
-  console.log('gjwerioughuiwerghuiowsergbuiowerbguiobwriognoweigbniopqwegniowebgiobw');
 
   if (isLoading) {
     return (<p>loading...</p>);
@@ -25,7 +24,7 @@ function HomePage() {
       <div className="hero-section">
         <img src={dropimage} alt="drop image" className="hero-image" />
         <div className="hero-text">
-          <h1> In Drops to Ocean every drop counts</h1>
+          <h1> In Drops2Ocean every drop counts</h1>
           <p>Empowering your skills and growth through projects and learning.</p>
         </div>
       </div>

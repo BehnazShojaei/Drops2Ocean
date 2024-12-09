@@ -11,7 +11,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 function CreateProject() {
 
     const navigate = useNavigate();
-    // const { auth, setAuth } = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const [projectInfo, setProjectInfo] = useState({
         projecttitle: "",
@@ -36,7 +36,7 @@ function CreateProject() {
             z.instanceof(File)
                 .optional()
                 .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
-                .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), ".jpg, .jpeg, .png and .webp files are accepted."),
+                .refine((files) => ACCEPTED_IMAGE_TYPES.includes(file.type), ".jpg, .jpeg, .png and .webp files are accepted."),
 
         //this is an optional field, 
     });
@@ -57,12 +57,12 @@ function CreateProject() {
 
     const handleChange = (event) => {
         // const { id, value, files, type } = event.target;
-        const { id, value } = event.target;
+        const { id, value, files, type } = event.target;
 
         setProjectInfo((prev) => ({
             ...prev,
-            // [id]: type === "file" ? files[0] : value, // Handle file input separately
-            [id]: value
+            [id]: type === "file" ? files[0] : value, // Handle file input separately
+
         }));
     };
 
@@ -92,9 +92,9 @@ function CreateProject() {
             formData.append("goal", projectInfo.projectgoal);
             formData.append("is_open", true);
             formData.append("date_created", new Date().toISOString());
-            // if (projectInfo.projectimage) {
-            //     formData.append("image", projectInfo.projectimage);
-            // }
+            if (projectInfo.projectimage) {
+                formData.append("image", projectInfo.projectimage);
+            }
 
             const response = await postProject(formData);
 
