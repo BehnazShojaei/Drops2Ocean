@@ -20,7 +20,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
         comment: "",
         anonymous: false,
     });
-    console.log(projectIDFromURL);
+    // console.log(projectIDFromURL);
 
     const pledgeSchema = z.object({
         amount: z.coerce.number().positive(),
@@ -45,9 +45,9 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             ...pledgeInfo,
             project: projectIDFromURL,
         };
-
-        console.log(formData);
-        const validationResult = pledgeSchema.safeParse(formData);
+        // console.log(formData);
+        const validationResult = await pledgeSchema.safeParse(formData);
+        console.log(validationResult);
 
         if (!validationResult.success) {
 
@@ -55,10 +55,12 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             console.error(validationResult.error.errors);
             return;
         }
-
         try {
+            // console.log("sdfsdffsd");
+            // debugger;
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
+<<<<<<< HEAD
             // Clear the form state
             setPledgeInfo({
                 amount: "",
@@ -67,6 +69,9 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             });
 
             navigate(`/project/${projectIDFromURL}`); // Redirect on success
+=======
+            // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success
+>>>>>>> new-develop
         }
 
         /// on my backend post pledge happens on /pledges endpoint
@@ -74,10 +79,8 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             // Show the exact error message returned from the API
             setError(apiError.message);
         }
-    };
 
-    //navigate to right place
-    // const formdata
+    };
 
     return (
         <div className="pledge-form-container">

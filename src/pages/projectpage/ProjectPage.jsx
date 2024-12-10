@@ -15,11 +15,9 @@ function ProjectPage() {
 
 
     // Fetch project data with custom hook
-    const { project, isLoading: isProjectLoading, error: projectError } = useProject(projectId);
+    const { project, isLoading, error } = useProject(id);
 
-    // fetch peledge data for the project
-    const { pledges, isLoading: isPledgesLoading, error: pledgesError } = usePledges(projectId);
-    //??? this part shouldn't i check isloading and error? for both useproject and usepledges? what to pass in each of useproject and usepledges
+    // console.log(project);
 
     // State to see toggle 
     const [showPledgeForm, setShowPledgeForm] = useState(!showPledgeForm);
@@ -49,15 +47,11 @@ function ProjectPage() {
                 <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
                 <h3>Pledges:</h3>
                 <ul>
-                    {pledges.length > 0 ? (
-                        pledges.map((pledge, key) => (
-                            <li key={key}>
-                                {pledge.amount} from {pledge.supporter || "Anonymous"}
-                            </li>
-                        ))
-                    ) : (
-                        <p>No pledges yet.</p>
-                    )}
+                    {project.pledges.map((pledgeData, index) => (
+                        <li key={index}>
+                            {pledgeData.amount} from {pledgeData.supporter}
+                        </li>
+                    ))}
                 </ul>
             </div>
 
@@ -72,7 +66,8 @@ function ProjectPage() {
                 {/* Show the PledgeForm if button is clicked */}
                 {showPledgeForm && (
                     <div className="pledge-form">
-                        <MakePledgeForm onPledgeSubmitted={() => fetchPledges()} />
+                        <MakePledgeForm />
+
 
                         <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
                             Cancel
