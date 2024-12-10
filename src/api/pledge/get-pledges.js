@@ -1,6 +1,10 @@
-async function getPledges() {
+async function getPledges(projectId = null) {
     // First we create the URL for the request by using the Vite environment variable and the API endpoint.
-    const url = `${import.meta.env.VITE_API_URL}/pledges`;
+    let url = `${import.meta.env.VITE_API_URL}/pledges`;
+
+    if (projectId){
+        url += `?project=${projectId}`; 
+    } //if projectId is provided adding a filter to show only pledges for the projectId
 
     const response = await fetch(url, { method: "GET" });
 

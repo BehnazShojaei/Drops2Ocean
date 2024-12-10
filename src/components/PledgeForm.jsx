@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import z from "zod";
 import postPledge from "../api/pledge/post-pledge";
 
-function MakePledgeForm() {
+function MakePledgeForm({ onPledgeSubmitted }) {
 
     // pass in supporterID as props to check logged in user
 
@@ -59,8 +59,17 @@ function MakePledgeForm() {
         try {
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
+            // Clear the form state
+            setPledgeInfo({
+                amount: "",
+                comment: "",
+                anonymous: false,
+            });
+
             navigate(`/project/${projectIDFromURL}`); // Redirect on success
         }
+
+        /// on my backend post pledge happens on /pledges endpoint
         catch (apiError) {
             // Show the exact error message returned from the API
             setError(apiError.message);
