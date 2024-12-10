@@ -3,6 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import z from "zod";
 import postPledge from "../api/pledge/post-pledge";
 
+const pledgeSchema = z.object({
+    amount: z.coerce.number().positive(),
+    comment: z.string().optional(),
+    anonymous: z.boolean(),
+    project: z.string()
+
+})
+
 function MakePledgeForm({ onPledgeSubmitted }) {
 
     // pass in supporterID as props to check logged in user
@@ -19,15 +27,11 @@ function MakePledgeForm({ onPledgeSubmitted }) {
         amount: "",
         comment: "",
         anonymous: false,
+        project: projectIDFromURL
     });
     // console.log(projectIDFromURL);
 
-    const pledgeSchema = z.object({
-        amount: z.coerce.number().positive(),
-        comment: z.string().optional(),
-        anonymous: z.boolean(),
 
-    })
 
     const handleChange = (event) => {
         const { id, value, type, checked } = event.target;
@@ -61,16 +65,9 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             console.log("Sending formData:", formData);
 
             await postPledge(validationResult.data);
-            console.log("Pledge response:", result);
 
             setSuccess("Pledge submitted successfully!");
 
-            // Clear the form state
-            setPledgeInfo({
-                amount: "",
-                comment: "",
-                anonymous: false,
-            });
 
             navigate(`/project/${projectIDFromURL}`); // Redirect on success
             // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success

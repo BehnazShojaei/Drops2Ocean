@@ -1,6 +1,6 @@
 async function postPledge(formData) {
     
-    const url = `${import.meta.env.VITE_API_URL}/pledges`;
+    const url = `${import.meta.env.VITE_API_URL}/pledges/`;
     const token = window.localStorage.getItem("token");
  // Check if the token exists
     if (!token) {
@@ -14,7 +14,7 @@ async function postPledge(formData) {
             "Authorization": `Token ${token}`,
         },
         body: JSON.stringify(formData), // Convert to JSON format
-    });
+            });
         if (!response.ok) {
             const fallbackError = `Error making a pledge`;
             const data = await response.json().catch(() => {

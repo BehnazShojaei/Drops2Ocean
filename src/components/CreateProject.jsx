@@ -34,7 +34,7 @@ function CreateProject() {
         projectdescription: z.string().min(3, { message: "Description required" }),
         projectimage:
             z.instanceof(File)
-                .optional()        //this is an optional field, 
+        //this is an optional field, 
         // .refine((file) => (file ?? true) && file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
         // .refine(
         //     (file) => (file ?? true) && ACCEPTED_IMAGE_TYPES.includes(file.type),
