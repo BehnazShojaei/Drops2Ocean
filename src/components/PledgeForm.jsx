@@ -59,7 +59,7 @@ function MakePledgeForm() {
         try {
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
-            navigate(`/project/${projectIDFromURL}`); // Redirect on success
+            // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success
         }
         catch (apiError) {
             // Show the exact error message returned from the API

@@ -12,6 +12,8 @@ function ProjectPage() {
     // Fetch project data with custom hook
     const { project, isLoading, error } = useProject(id);
 
+    console.log(project);
+
     // State to see toggle 
     const [showPledgeForm, setShowPledgeForm] = useState(true);
     console.log(showPledgeForm)
@@ -41,11 +43,9 @@ function ProjectPage() {
                 <h3>Pledges:</h3>
 
                 <ul>
-
-                    {project.pledges.map((pledgeData, key) => (
-                        <li key={key}>
+                    {project.pledges.map((pledgeData, index) => (
+                        <li key={index}>
                             {pledgeData.amount} from {pledgeData.supporter}
-
                         </li>
                     ))}
                 </ul>

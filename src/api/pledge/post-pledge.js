@@ -3,13 +3,11 @@ async function postPledge(formData) {
     const url = `${import.meta.env.VITE_API_URL}/pledges`;
     const token = window.localStorage.getItem("token");
 
-
-
     try {
         
         const response = await fetch(url, {
         method: "POST",
-        headers: {
+        headers: {"Content-Type": "application/json",
             "Authorization": `Token ${token}`,
         },
         body: formData, // can i only pass formData
@@ -23,6 +21,7 @@ async function postPledge(formData) {
             const errorMessage = data?.detail ?? fallbackError;
             throw new Error(errorMessage);
         }
+        console.log(response);
         return await response.json();
     }catch (error) {
         console.error("Error in postPledge:", error.message);throw error;
