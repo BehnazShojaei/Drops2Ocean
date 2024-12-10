@@ -12,7 +12,7 @@ function ProjectPage() {
     // Fetch project data with custom hook
     const { project, isLoading, error } = useProject(id);
 
-    console.log(project);
+    // console.log(project);
 
     // State to see toggle 
     const [showPledgeForm, setShowPledgeForm] = useState(true);
@@ -63,11 +63,6 @@ function ProjectPage() {
                 {showPledgeForm && (
                     <div className="pledge-form">
                         <MakePledgeForm />
-
-
-
-
-
 
 
                         <button onClick={handlePledgeRequest} className="pledge-toggle-btn">

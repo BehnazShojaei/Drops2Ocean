@@ -20,7 +20,7 @@ function MakePledgeForm() {
         comment: "",
         anonymous: false,
     });
-    console.log(projectIDFromURL);
+    // console.log(projectIDFromURL);
 
     const pledgeSchema = z.object({
         amount: z.coerce.number().positive(),
@@ -45,9 +45,9 @@ function MakePledgeForm() {
             ...pledgeInfo,
             project: projectIDFromURL,
         };
-
-        console.log(formData);
-        const validationResult = pledgeSchema.safeParse(formData);
+        // console.log(formData);
+        const validationResult = await pledgeSchema.safeParse(formData);
+        console.log(validationResult);
 
         if (!validationResult.success) {
 
@@ -55,8 +55,9 @@ function MakePledgeForm() {
             console.error(validationResult.error.errors);
             return;
         }
-
         try {
+            // console.log("sdfsdffsd");
+            // debugger;
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
             // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success
@@ -65,10 +66,8 @@ function MakePledgeForm() {
             // Show the exact error message returned from the API
             setError(apiError.message);
         }
-    };
 
-    //navigate to right place
-    // const formdata
+    };
 
     return (
         <div className="pledge-form-container">
