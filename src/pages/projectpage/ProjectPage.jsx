@@ -24,7 +24,7 @@ function ProjectPage() {
 
     // Toggle function for PledgeForm
     const handlePledgeRequest = () => {
-        setShowPledgeForm(!showPledgeForm);
+        setShowPledgeForm(true);
     };
 
     if (isProjectLoading || isPledgesLoading) {

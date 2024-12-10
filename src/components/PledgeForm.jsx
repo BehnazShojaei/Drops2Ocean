@@ -60,7 +60,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             // debugger;
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
-<<<<<<< HEAD
+
             // Clear the form state
             setPledgeInfo({
                 amount: "",
@@ -69,9 +69,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             });
 
             navigate(`/project/${projectIDFromURL}`); // Redirect on success
-=======
             // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success
->>>>>>> new-develop
         }
 
         /// on my backend post pledge happens on /pledges endpoint
