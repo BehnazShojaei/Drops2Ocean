@@ -1,43 +1,41 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import useProject from "../../hooks/use-project.js";
-import usePledges from "../../hooks/use-pledges.js";
+// import usePledges from "../../hooks/use-pledges.js";
 import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css"
 
 function ProjectPage() {
     // Get project ID from URL
-    const { id: projecId } = useParams();
+    const { id: projectId } = useParams();
 
 
     // console.log(pledgeData);
 
 
     // Fetch project data with custom hook
-    const { project, isLoading, error } = useProject(id);
+    const { project, isLoading, error } = useProject(projectId);
 
     // console.log(project);
 
     // State to see toggle 
-    const [showPledgeForm, setShowPledgeForm] = useState(!showPledgeForm);
+    const [showPledgeForm, setShowPledgeForm] = useState(false);
 
     // Toggle function for PledgeForm
     const handlePledgeRequest = () => {
-        setShowPledgeForm(true);
+        setShowPledgeForm(!showPledgeForm);
     };
 
-    if (isProjectLoading || isPledgesLoading) {
+    if (isLoading) {
         return <img src={loadingGif} alt="Loading..." />;
     }
 
-    if (projectError) {
+    if (error) {
         return <p>Error fetching project: {projectError.message}</p>;
     }
 
-    if (pledgesError) {
-        return <p>Error fetching pledges: {pledgesError.message}</p>;
-    }
+
 
     return (
         <>
@@ -47,12 +45,18 @@ function ProjectPage() {
                 <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
                 <h3>Pledges:</h3>
                 <ul>
-                    {project.pledges.map((pledgeData, index) => (
-                        <li key={index}>
-                            {pledgeData.amount} from {pledgeData.supporter}
-                        </li>
-                    ))}
+                    {project.pledges && project.pledges.length > 0 ? (
+                        project.pledges.map((pledgeData, index) => (
+                            <li key={index}>
+                                ${pledgeData.amount} from{" "}
+                                {pledgeData.supporter || "Anonymous"}
+                            </li>
+                        ))
+                    ) : (
+                        <li>Be the first to support this project!</li>
+                    )}
                 </ul>
+
             </div>
 
             <div className="pledge-section">
@@ -66,7 +70,7 @@ function ProjectPage() {
                 {/* Show the PledgeForm if button is clicked */}
                 {showPledgeForm && (
                     <div className="pledge-form">
-                        <MakePledgeForm />
+                        <MakePledgeForm onPledgeSuccess={() => refetchProject()} />
 
 
                         <button onClick={handlePledgeRequest} className="pledge-toggle-btn">

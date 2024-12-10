@@ -2,7 +2,10 @@ async function postPledge(formData) {
     
     const url = `${import.meta.env.VITE_API_URL}/pledges`;
     const token = window.localStorage.getItem("token");
-
+ // Check if the token exists
+    if (!token) {
+        throw new Error("Authorization token is missing. Please log in.");
+    }
     try {
         
         const response = await fetch(url, {
@@ -10,8 +13,8 @@ async function postPledge(formData) {
         headers: {"Content-Type": "application/json",
             "Authorization": `Token ${token}`,
         },
-        body: formData, // can i only pass formData
-        });
+        body: JSON.stringify(formData), // Convert to JSON format
+    });
         if (!response.ok) {
             const fallbackError = `Error making a pledge`;
             const data = await response.json().catch(() => {

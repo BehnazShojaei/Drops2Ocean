@@ -58,7 +58,11 @@ function MakePledgeForm({ onPledgeSubmitted }) {
         try {
             // console.log("sdfsdffsd");
             // debugger;
+            console.log("Sending formData:", formData);
+
             await postPledge(validationResult.data);
+            console.log("Pledge response:", result);
+
             setSuccess("Pledge submitted successfully!");
 
             // Clear the form state
