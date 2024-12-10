@@ -1,7 +1,5 @@
 .pledge-form-container {
-  display: none;
   transition: all 0.3s ease-in-out;
-  height: 0; /* Start with height 0, will transition */
   overflow: hidden;
 }
 

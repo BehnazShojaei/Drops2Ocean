@@ -16,21 +16,25 @@ function NavBar() {
 
   return (
     <>
+      {/* Left side */}
+
       <nav id="NavBar">
-        <Link to="/contact">Contact</Link>
         <Link to="/">Drops2Ocean</Link>
+        <div>    {/* Right side */}
 
-        {auth.token ? (
-          <Link to="/" onClick={handleLogout}>
-            Log Out
-          </Link>) : (
-          <Link to="/login">Login</Link>
+          {auth.token ? (
+            <Link to="/" onClick={handleLogout}>
+              Log Out
+            </Link>) : (
+            <Link to="/login">Login</Link>
 
-        )}
-        {auth.token && <Link to="/newproject">Create a project</Link>}
+          )}
+          {auth.token && <Link to="/newproject">Create a project</Link>}
+          <Link to="/contact">Contact</Link>
+        </div>
       </nav>
 
-      {/* Child components will render here */}
+
       <Outlet />
     </>
   );

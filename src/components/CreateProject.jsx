@@ -30,7 +30,7 @@ function CreateProject() {
     const projectSchema = z.object({
 
         projecttitle: z.string().min(1, { message: "Title required*" }),
-        projectgoal: z.coerce.number().positive("Goal must be a positive number"),
+        projectgoal: z.coerce.number().positive(),
         projectdescription: z.string().min(3, { message: "Description required" }),
         projectimage:
             z.instanceof(File)

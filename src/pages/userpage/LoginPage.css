@@ -1,1 +1,70 @@
-// I am trying to make changes here to check the sync with main 
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Page Container */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* Login and Signup Section */
+.login-section, .signup-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #00796b;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+
+
+/* Signup Toggle Button */
+.signup-toggle-btn {
+    padding: 10px 15px;
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.signup-toggle-btn:hover {
+    background-color: #004d40;
+}
+
+/* Signup Form */
+.signup-form {
+    margin-top: 20px;
+}
+
+.signup-form h2 {
+    margin-bottom: 15px;
+    color: #004d40;
+}

@@ -3,10 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import z from "zod";
 import postPledge from "../api/pledge/post-pledge";
 
-function MakePledgeForm({ projectData, supporterID }) {
+function MakePledgeForm() {
 
     // pass in supporterID as props to check logged in user
-    //pass projectData ? or should i get it only from url? it supposed to be there already
 
     const { id: projectIDFromURL } = useParams();
     const navigate = useNavigate();
@@ -17,22 +16,16 @@ function MakePledgeForm({ projectData, supporterID }) {
 
 
     const [pledgeInfo, setPledgeInfo] = useState({
-        pledgeamount: "",
-        pledgecomment: "",
+        amount: "",
+        comment: "",
         anonymous: false,
-        // projectID: projectID?.id ?? projectIDFromURL, //should i get it useparam? how to check if it is there?
-        // supporter: supporterID, // get it from api??
-        date_created: new Date().toISOString(),
     });
-
+    console.log(projectIDFromURL);
 
     const pledgeSchema = z.object({
-        pledgeamount: z.coerce.number().positive("Goal must be a positive number"),
-        pledgecomment: z.string().optional(),
+        amount: z.coerce.number().positive(),
+        comment: z.string().optional(),
         anonymous: z.boolean(),
-        project: z.number(),
-        supporter: z.number(),
-        date_created: z.string(),
 
     })
 
@@ -50,10 +43,10 @@ function MakePledgeForm({ projectData, supporterID }) {
         setSuccess(null);
         const formData = {
             ...pledgeInfo,
-            project: Number(projectID),
-            supporter: supporterID,
+            project: projectIDFromURL,
         };
 
+        console.log(formData);
         const validationResult = pledgeSchema.safeParse(formData);
 
         if (!validationResult.success) {
@@ -66,7 +59,7 @@ function MakePledgeForm({ projectData, supporterID }) {
         try {
             await postPledge(validationResult.data);
             setSuccess("Pledge submitted successfully!");
-            navigate(`/projects/${projectID}`); // Redirect on success
+            navigate(`/project/${projectIDFromURL}`); // Redirect on success
         }
         catch (apiError) {
             // Show the exact error message returned from the API
@@ -87,22 +80,22 @@ function MakePledgeForm({ projectData, supporterID }) {
 
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="pledgeamount">Amount:</label>
+                    <label htmlFor="amount">Amount:</label>
                     <input
                         type="number"
-                        id="pledgeamount"
+                        id="amount"
                         placeholder="Enter amount"
-                        value={pledgeInfo.pledgeamount}
+                        value={pledgeInfo.amount}
                         onChange={handleChange}
                     />
                 </div>
                 <div>
-                    <label htmlFor="pledgecomment">Comment:</label>
+                    <label htmlFor="comment">Comment:</label>
                     <input
                         type="text"
-                        id="pledgecomment"
+                        id="comment"
                         placeholder="Add a comment (optional)"
-                        value={pledgeInfo.pledgecomment}
+                        value={pledgeInfo.comment}
                         onChange={handleChange}
                     />
                 </div>
@@ -119,7 +112,6 @@ function MakePledgeForm({ projectData, supporterID }) {
             </form>
         </div>
     );
-
 
 }
 

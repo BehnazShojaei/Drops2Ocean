@@ -3,6 +3,7 @@ import { useState } from "react";
 import useProject from "../../hooks/use-project.js";
 import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
+import "../projectpage/ProjectPage.css"
 
 function ProjectPage() {
     // Get project ID from URL
@@ -12,8 +13,8 @@ function ProjectPage() {
     const { project, isLoading, error } = useProject(id);
 
     // State to see toggle 
-    const [showPledgeForm, setShowPledgeForm] = useState(false);
-
+    const [showPledgeForm, setShowPledgeForm] = useState(true);
+    console.log(showPledgeForm)
     // Toggle function for PledgeForm
     const handlePledgeRequest = () => {
         setShowPledgeForm(!showPledgeForm);
@@ -38,10 +39,13 @@ function ProjectPage() {
                 <h3>Created at: {project.date_created}</h3>
                 <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
                 <h3>Pledges:</h3>
+
                 <ul>
+
                     {project.pledges.map((pledgeData, key) => (
                         <li key={key}>
                             {pledgeData.amount} from {pledgeData.supporter}
+
                         </li>
                     ))}
                 </ul>
@@ -58,8 +62,14 @@ function ProjectPage() {
                 {/* Show the PledgeForm if button is clicked */}
                 {showPledgeForm && (
                     <div className="pledge-form">
-                        <h2>Make a Pledge</h2>
                         <MakePledgeForm />
+
+
+
+
+
+
+
                         <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
                             Cancel
                         </button>

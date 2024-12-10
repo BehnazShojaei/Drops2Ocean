@@ -1,0 +1,51 @@
+/* Global reset for margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Not Found Page Container */
+.not-found-container {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f0f4f8; /* Light background color */
+    color: #333;
+}
+
+/* 404 Title */
+.not-found-container h1 {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #d32f2f; /* A red tone for the 404 text */
+    margin-bottom: 20px;
+}
+
+/* Message Paragraph */
+.not-found-container p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Back to Home Link */
+.back-home-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #1976d2; /* Primary blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-home-link:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+    transform: scale(1.05);
+}
