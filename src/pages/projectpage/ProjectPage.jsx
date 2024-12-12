@@ -35,12 +35,15 @@ function ProjectPage() {
         return <p>Error fetching project: {projectError.message}</p>;
     }
 
+// list of pledges money from ananymous or money from username 
+// toggle for project status open or closed
 
 
     return (
         <>
             <div className="project-section">
                 <h2>{project.title}</h2>
+                {/* image project from whatever uploaded already */}
                 <h3>Created at: {project.date_created}</h3>
                 <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
                 <h3>Pledges:</h3>
