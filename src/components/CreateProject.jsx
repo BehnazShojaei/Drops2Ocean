@@ -105,7 +105,7 @@ function CreateProject() {
     // now time to change backend to accept upload and not the url lol I regret exploring this option bad time management behnaz joon
 
     return (
-        <div className="create-project">
+        <div className="project-form-container">
             <h1>Create a New Project</h1>
             {errorMessage.length > 0 && (
                 <ul style={{ color: "red" }}>
@@ -163,7 +163,7 @@ function CreateProject() {
                     />
                 </div>
 
-                <button type="submit" disabled={isSubmitting}>
+                <button className="create-btn" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Create"}
                 </button></form>
         </div >

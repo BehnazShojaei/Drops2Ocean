@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import LoginForm from "/src/components/LoginForm.jsx";
 import SignUpForm from "../../components/SignUpForm";
 import "/src/pages/userpage/LoginPage.css";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const [showSignUp, setShowSignUp] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleSignUpClick = () => {
         setShowSignUp(!showSignUp);
     };
-
+    const handleHomePageRedirect = () => {
+        navigate("/homepage"); // Redirect to homepage
+    };
     return (
         <div className="login-page">
             <div className="login-section">
@@ -24,7 +29,7 @@ function LoginPage() {
             <div className="signup-section">
                 {/* Show the button only if the form is not displayed */}
                 {!showSignUp && (
-                    <button onClick={handleSignUpClick} className="signup-toggle-btn">
+                    <button onClick={handleSignUpClick} className="button">
                         Create a profile
                     </button>
                 )}

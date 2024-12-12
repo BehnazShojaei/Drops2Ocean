@@ -119,7 +119,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
                     />
                     <label htmlFor="anonymous">Pledge Anonymously</label>
                 </div>
-                <button type="submit">Submit Pledge</button>
+                <button className="button" type="submit">Submit Pledge</button>
             </form>
         </div>
     );

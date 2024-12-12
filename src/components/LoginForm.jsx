@@ -77,7 +77,7 @@ function LoginForm() {
                 />
             </div>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error */}
-            <button type="submit">Login</button>
+            <button className="button" type="submit">Login</button>
         </form>
     );
 }
