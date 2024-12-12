@@ -21,7 +21,7 @@
 #NavBar a {
   text-decoration: none;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -31,11 +31,14 @@
 }
 
 /* Right-aligned Links */
-#NavBar a + a {
+#NavBar div a {
+  font-size: 1rem; 
+  font-weight: bold; 
+  color: #fff;
   margin-left: 20px; /* Space between links */
-  font-size: 1rem;
-  font-weight: normal;
+  transition: color 0.3s ease;
 }
+
 
 /* Add Flexbox to Align the Right Links */
 #NavBar div {

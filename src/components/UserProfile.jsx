@@ -1,15 +1,15 @@
 import React from "react";
-import { useAuth } from "../../hooks/use-auth";
-import useUserProfile from "../../hooks/use-userprofile";
-import UserProfile from "../../components/UserProfile";
+import { useAuth } from "../hooks/use-auth.js";
+import useUserProfile from "../hooks/use-userprofile";
 import loadingGif from "../assets/loading.webp";
+import UserProfile from "../components/UserProfile.jsx";
 import { useNavigate } from "react-router-dom";
 
-
 function UserProfilePage() {
-    const { auth } = useAuth(); // Get token from context
-    const { profile, isLoading, error } = useUserProfile(auth.token);
+    const { auth } = useAuth(); // Get the token from AuthContext
+    const { profile, isLoading, error } = useUserProfile(auth.token); // Pass token to fetch user profile
     const navigate = useNavigate();
+
     if (isLoading) {
         return (
             <div style={{ textAlign: "center", marginTop: "20px" }}>
@@ -24,7 +24,7 @@ function UserProfilePage() {
 
     return (
         <div>
-            <UserProfile profile={userprofile} />
+            <UserProfile profile={profile} />
             <div style={{ textAlign: "center", marginTop: "20px" }}>
                 <button onClick={() => navigate("/")} className="button">
                     Back to Home

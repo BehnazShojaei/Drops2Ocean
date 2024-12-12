@@ -5,22 +5,24 @@ import { useState } from "react";
 function ProjectCard(props) {
     const { projectData } = props;
     const projectLink = `project/${projectData.id}`;
-    // const imageUrl = `${projectData.image}`; where should I have a variable or just avoid the name complication and put it straight into xml
+    const image = `${projectData.image}`;
 
     const [showPledgeForm, setShowPledgeForm] = useState(true);
 
     const handlePledgeRequest = () => {
         setShowPledgeForm(false);
     }
-    // console.log("fgdghj,k");
 
     return (
 
         <div className="project-card">
             <Link to={projectLink}>
-                <img src={projectData.image} alt="project visual" />
                 <h3>{projectData.title}</h3>
+                <img src={image} alt="project visual" />
+
             </Link>
+            <p>{projectData.description}</p>
+            <p>$ {projectData.goal}</p>
 
         </div>
 

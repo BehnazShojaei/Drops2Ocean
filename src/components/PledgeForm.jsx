@@ -5,11 +5,13 @@ import postPledge from "../api/pledge/post-pledge";
 
 const pledgeSchema = z.object({
     amount: z.coerce.number().positive(),
-    comment: z.string().optional(),
+    comment: z.string(),
     anonymous: z.boolean(),
     project: z.string()
 
 })
+
+
 
 function MakePledgeForm({ onPledgeSubmitted }) {
 
@@ -32,7 +34,6 @@ function MakePledgeForm({ onPledgeSubmitted }) {
     // console.log(projectIDFromURL);
 
 
-
     const handleChange = (event) => {
         const { id, value, type, checked } = event.target;
         setPledgeInfo((prev) => ({
@@ -49,9 +50,11 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             ...pledgeInfo,
             project: projectIDFromURL,
         };
+        //formdata define correct?
+
         // console.log(formData);
         const validationResult = await pledgeSchema.safeParse(formData);
-        console.log(validationResult);
+        // console.log(validationResult);
 
         if (!validationResult.success) {
 
@@ -60,18 +63,19 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             return;
         }
         try {
-            // console.log("sdfsdffsd");
-            // debugger;
-            console.log("Sending formData:", formData);
 
-            await postPledge(validationResult.data);
+            const result = await postPledge(formData);
+            const username = await fetchSupporterUsername(result.supporter);
 
-            setSuccess("Pledge submitted successfully!");
+            setSuccess(`Pledge submitted successfully! Thank you!`);
 
+            if (onPledgeSubmitted) onPledgeSubmitted(result);
 
             navigate(`/project/${projectIDFromURL}`); // Redirect on success
-            // navigate(`/pledge/${projectIDFromURL}`); // Redirect on success
+
         }
+        //I need to add this post pledge somewhere and also i need to show username of the supporter not only the id number 
+
 
         /// on my backend post pledge happens on /pledges endpoint
         catch (apiError) {
@@ -105,7 +109,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
                     <input
                         type="text"
                         id="comment"
-                        placeholder="Add a comment (optional)"
+                        placeholder="Add a comment"
                         value={pledgeInfo.comment}
                         onChange={handleChange}
                     />

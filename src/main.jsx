@@ -12,6 +12,7 @@ import SignUpForm from "./components/SignUpForm.jsx";
 import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
 import MakePledgeForm from "./components/PledgeForm.jsx";
 import NewProjectPage from "./pages/projectpage/NewProjectPage.jsx";
+import UserProfile from "./components/UserProfile.jsx"
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
   // These are the three routes!
@@ -23,15 +24,12 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/project/:id", element: <ProjectPage /> },
-      { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line
-
-      // { path: "*", element: <h1>404: Page Not Found</h1> },
-      { path: "/signup", element: <SignUpForm /> }, // Sign-Up route
-      {
-        path: "*", // This matches all undefined routes
-        element: <NotFoundPage />,
-      },
+      { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line?
+      { path: "/signup", element: <SignUpForm /> },
+      { path: "*", element: <NotFoundPage />, },
       { path: "/pledge", element: < MakePledgeForm /> },
+      { path: "/profile", element: < UserProfile /> },
+
 
     ]
 

@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 
 import getUserProfile from "../api/user/get-user-profile";
 
-export default function useUserProfile() {
-    
+export default function useUserProfile(token) {
+  console.log("Token passed to useUserProfile:", token); // Check if token is being passed correctly
+
     const [userprofile, setUserProfile] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
+    console.log("Token in useEffect:", token); // Verify token inside useEffect
 
 
     useEffect(() => {
