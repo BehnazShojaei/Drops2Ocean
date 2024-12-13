@@ -31,17 +31,24 @@ function NavBar() {
           )}
           {auth.token && <Link to="/newproject">Create a project</Link>}
 
-          <Link to="/" onClick={() => {
-            navigate("/");
-            setTimeout(() => {
-              const element = document.getElementById("project-list");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
-              }
-            }, 100); // Wait to ensure the homepage is rendered
-          }}>
+
+
+          <Link
+            to="/"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/");
+              setTimeout(() => {
+                const element = document.getElementById("project-list");
+                if (element) element.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            }}
+          >
             Featured Projects
           </Link>
+
+
+
 
           {/* link to the featured project there is a div in homepage called project list I want to navigate there */}
           {/* <div id="project-list"></div> */}
