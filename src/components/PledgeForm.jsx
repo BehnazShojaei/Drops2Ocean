@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import z from "zod";
 import postPledge from "../api/pledge/post-pledge";
+import "./PledgeForm.css";
 
 const pledgeSchema = z.object({
     amount: z.coerce.number().positive(),
@@ -125,7 +126,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="checkbox-container">
                     <input
                         type="checkbox"
                         id="anonymous"
