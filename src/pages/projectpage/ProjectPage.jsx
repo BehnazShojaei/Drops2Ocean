@@ -1,10 +1,6 @@
 import { useParams } from "react-router-dom";
-
-// import { useState } from "react";
 import { useState, useEffect } from "react";
-
 import useProject from "../../hooks/use-project.js";
-// import usePledges from "../../hooks/use-pledges.js";
 import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css"
@@ -38,7 +34,7 @@ function ProjectPage() {
             }
 
             const userData = await response.json();
-            console.log("Fetched user data:", userData); // Debug the response
+            // console.log("Fetched user data:", userData); // Debug the response
             return userData.username || "Unknown User";
         } catch (error) {
             console.error(`Error fetching username for supporter ${supporterID}:`, error);
@@ -58,7 +54,7 @@ function ProjectPage() {
                         usernames[pledge.supporter] = username;
                     }
                 }
-                console.log("Updated usernames:", usernames); // Debug the usernames state
+                // console.log("Updated usernames:", usernames); // Debug the usernames state
 
                 setSupporterUsernames(usernames);
             };
@@ -91,8 +87,18 @@ function ProjectPage() {
                 <ProjectCard projectData={project} />
 
                 {/* image project from whatever uploaded already */}
-                <h3>Created at: {project.date_created}</h3>
-                <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
+                <h4>Created at: {new Date(project.date_created).toLocaleDateString("en-AU", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                })}
+                </h4>
+                <h4>
+                    Status:
+                    <span className={`status-badge ${project.is_open ? "" : "closed"}`}>
+                        {project.is_open ? "Open" : "Closed"}
+                    </span>
+                </h4>
                 <h3>Pledges:</h3>
                 <ul>
 

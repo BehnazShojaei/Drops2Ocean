@@ -1,29 +1,22 @@
+// ProgressBar.jsx
 import React from "react";
 import "./ProgressBar.css";
 
-const ProgressBar = ({ goal = 0, total = 0 }) => {
-    const progressPercentage = Math.min(Math.round((total / goal) * 100), 100); // Limit to 100%
-    const isGoalReached = total >= goal;
+function ProgressBar({ goal = 0, pledges = [] }) {
+    // Calculate total raised
+    const totalRaised = pledges.reduce((sum, pledge) => sum + (pledge.amount ?? 0), 0);
+
+    // Calculate progress percentage (avoid division by 0)
+    const progressPercentage = goal > 0 ? Math.min((totalRaised / goal) * 100, 100) : 0;
 
     return (
-        <div id="progress-container">
-            <div id="progress-bar">
-                <div
-                    style={{ width: `${progressPercentage}%` }}
-                    id="progress"
-                    className={isGoalReached ? "goal-reached" : ""}
-                ></div>
-            </div>
-            <p className="sub-text">
-                {isGoalReached ? (
-                    <b>Goal reached! | ${total} raised of ${goal} goal</b>
-                ) : (
-                    <b>${total > 0 ? total : "0"} raised</b>
-                )}{" "}
-                of ${goal} goal
+        <div className="progress-container">
+            <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+            <p className="progress-text">
+                ${totalRaised} raised of ${goal} goal
             </p>
         </div>
     );
-};
+}
 
 export default ProgressBar;
