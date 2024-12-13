@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
 import "./ProjectCard.css";
-import { useState } from "react";
+// import { useState } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 
 
 function ProjectCard(props) {
     const { projectData } = props;
     const projectLink = `project/${projectData.id}`;
-    const image = `${projectData.image}`;
-
-    // const [showPledgeForm, setShowPledgeForm] = useState(true);
-
-    // const handlePledgeRequest = () => {
-    //     setShowPledgeForm(false);
-    // }
+    const image = `${projectData.image}` ?? "";
 
     const totalRaised = projectData.pledges?.reduce(
         (sum, pledge) => sum + pledge.amount,
         0
-    );
+    ) || 0;
 
     return (
 
@@ -30,9 +24,7 @@ function ProjectCard(props) {
             </Link>
 
             <p>Goal: ${projectData.goal}</p>
-            {/* ProgressBar Component */}
             <ProgressBar goal={projectData.goal} total={totalRaised} />
-
 
         </div>
 

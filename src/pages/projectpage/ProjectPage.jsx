@@ -9,7 +9,6 @@ import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css"
 import ProjectCard from "../../components/ProjectCard.jsx";
-import ProgressBar from "../../components/ProgressBar.jsx";
 
 function ProjectPage() {
     // Get project ID from URL
@@ -25,34 +24,48 @@ function ProjectPage() {
     const handlePledgeRequest = () => {
         setShowPledgeForm(!showPledgeForm);
     };
-    // Fetch supporter username dynamically
+
+
+    //Fetch username dynamically based on supporter ID
     const fetchSupporterUsername = async (supporterID) => {
         try {
-            const response = await fetch(`/users/${supporterID}`);
-            if (!response.ok) throw new Error("Failed to fetch username");
+            const url = `${import.meta.env.VITE_API_URL}/users/${supporterID}/`;
+            console.log("Fetching from URL:", url); // Debugging the full URL
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch user with ID ${supporterID}`);
+            }
+
             const userData = await response.json();
-            return userData.username;
+            console.log("Fetched user data:", userData); // Debug the response
+            return userData.username || "Unknown User";
         } catch (error) {
             console.error(`Error fetching username for supporter ${supporterID}:`, error);
             return "Unknown User";
         }
     };
 
+
     // Populate supporter usernames for pledges
     useEffect(() => {
         if (project?.pledges) {
             const fetchUsernames = async () => {
-                const usernames = { ...supporterUsernames }; // Use existing cached usernames
+                const usernames = { ...supporterUsernames };
                 for (const pledge of project.pledges) {
                     if (!pledge.anonymous && !usernames[pledge.supporter]) {
-                        usernames[pledge.supporter] = await fetchSupporterUsername(pledge.supporter);
+                        const username = await fetchSupporterUsername(pledge.supporter);
+                        usernames[pledge.supporter] = username;
                     }
                 }
+                console.log("Updated usernames:", usernames); // Debug the usernames state
+
                 setSupporterUsernames(usernames);
             };
             fetchUsernames();
         }
     }, [project]);
+
 
     const handlePledgeSuccess = () => {
         refetch(); // Refetch project data to update pledges
@@ -74,24 +87,15 @@ function ProjectPage() {
     return (
         <>
             <div className="project-section">
-                {/* <h2>{project.title}</h2> */}
-                {/* <div> */}
+
                 <ProjectCard projectData={project} />
-                {/* </div> */}
+
                 {/* image project from whatever uploaded already */}
                 <h3>Created at: {project.date_created}</h3>
                 <h3>{`Status: ${project.is_open ? "Open" : "Closed"}`}</h3>
                 <h3>Pledges:</h3>
                 <ul>
-                    {/* /* {project.pledges && project.pledges.length > 0 ? ( */}
-                    {/* project.pledges.map((pledgeData, index) => (
-                            <li key={index}>
-                                ${pledgeData.amount} from {" "}
-                                {pledgeData.supporter || "Anonymous"}
-                            </li>
 
-                        ))
-                    ) : ( */}
 
                     {project.pledges && project.pledges.length > 0 ? (
                         project.pledges.map((pledgeData, index) => (

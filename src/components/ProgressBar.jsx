@@ -1,38 +1,29 @@
 import React from "react";
 import "./ProgressBar.css";
 
-const ProgressBar = ({ goal, total }) => {
-    const progressPercentage = Math.round((total / goal) * 100) + "%";
-    const remainder = Math.round(goal - total, 2);
-
-    console.log(progressPercentage);
-    const progressStyle = {
-        width: progressPercentage,
-    };
-    const completeGoalStyle = {
-        width: "100%",
-    };
+const ProgressBar = ({ goal = 0, total = 0 }) => {
+    const progressPercentage = Math.min(Math.round((total / goal) * 100), 100); // Limit to 100%
+    const isGoalReached = total >= goal;
 
     return (
         <div id="progress-container">
             <div id="progress-bar">
-                {total < goal ? (
-                    <div style={progressStyle} id="progress"></div>
-                ) : (
-                    <div style={completeGoalStyle} id="progress"></div>
-                )}
+                <div
+                    style={{ width: `${progressPercentage}%` }}
+                    id="progress"
+                    className={isGoalReached ? "goal-reached" : ""}
+                ></div>
             </div>
-            {total < goal ? (
-                <p className="sub-text">
-                    <b>${total > 0 ? total : "0"} raised</b> of ${goal} goal
-                </p>
-            ) : (
-                <p>
-                    Goal reached! | ${total} raised of ${goal} goal
-                </p>
-            )}
+            <p className="sub-text">
+                {isGoalReached ? (
+                    <b>Goal reached! | ${total} raised of ${goal} goal</b>
+                ) : (
+                    <b>${total > 0 ? total : "0"} raised</b>
+                )}{" "}
+                of ${goal} goal
+            </p>
         </div>
     );
 };
 
-export default ProgressBar; 
+export default ProgressBar;

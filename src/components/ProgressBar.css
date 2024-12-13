@@ -1,26 +1,29 @@
 #progress-container {
     width: 100%;
     margin: 10px 0;
-  }
-  
-  #progress-bar {
+}
+
+#progress-bar {
     background-color: #e0e0e0;
     border-radius: 8px;
     height: 20px;
     position: relative;
     overflow: hidden;
-  }
-  
-  #progress {
+}
+
+#progress {
     height: 100%;
-    background-color: #4caf50; /* Green color */
+    background-color: #4caf50; /* Default Green */
     transition: width 0.5s ease-in-out;
-  }
-  
-  .sub-text {
+}
+
+.goal-reached {
+    background-color: #ff9800; /* Orange color for a completed goal */
+}
+
+.sub-text {
     font-size: 14px;
     text-align: center;
     margin-top: 5px;
     color: #555;
-  }
-  
+}

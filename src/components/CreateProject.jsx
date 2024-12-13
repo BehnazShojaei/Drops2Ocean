@@ -5,8 +5,23 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth.js";
 import { z } from "zod";
 
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+const projectSchema = z.object({
+
+    projecttitle: z.string().min(1, { message: "Title required*" }),
+    projectgoal: z.coerce.number().positive(),
+    projectdescription: z.string().min(3, { message: "Description required" }),
+    projectimage:
+        z.instanceof(File)
+            .optional()
+            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+            .refine(
+                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+                "Accepted file types: .jpg, .jpeg, .png, and .webp"
+            ),
+});
 
 function CreateProject() {
 
@@ -26,24 +41,6 @@ function CreateProject() {
     const [isSubmitting, setIsSubmitting] = useState(false); //adding this so later I can use submitting loader or disable button
 
 
-
-    const projectSchema = z.object({
-
-        projecttitle: z.string().min(1, { message: "Title required*" }),
-        projectgoal: z.coerce.number().positive(),
-        projectdescription: z.string().min(3, { message: "Description required" }),
-        projectimage:
-            z.instanceof(File)
-        //this is an optional field, 
-        // .refine((file) => (file ?? true) && file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-        // .refine(
-        //     (file) => (file ?? true) && ACCEPTED_IMAGE_TYPES.includes(file.type),
-        //     "Accepted file types: .jpg, .jpeg, .png, and .webp"
-        // ),
-    });
-
-
-
     const handleChange = (event) => {
         const { id, value, files, type } = event.target;
 
@@ -60,6 +57,7 @@ function CreateProject() {
         event.preventDefault(); //avoid default submission
         setErrorMessage([]); //initialize
         setIsSubmitting(true);
+
         const result = projectSchema.safeParse(projectInfo); //check error with zod
 
         if (!result.success) {
@@ -77,7 +75,7 @@ function CreateProject() {
             formData.append("description", projectInfo.projectdescription);
             formData.append("goal", projectInfo.projectgoal);
             formData.append("is_open", true);
-            formData.append("date_created", new Date().toISOString());
+            formData.append("date_created", projectInfo.date_created);
             if (projectInfo.projectimage) {
                 formData.append("image", projectInfo.projectimage);
             }

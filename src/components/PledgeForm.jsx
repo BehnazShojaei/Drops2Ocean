@@ -12,7 +12,6 @@ const pledgeSchema = z.object({
 })
 
 
-
 function MakePledgeForm({ onPledgeSubmitted }) {
 
     // pass in supporterID as props to check logged in user
@@ -32,7 +31,19 @@ function MakePledgeForm({ onPledgeSubmitted }) {
         project: projectIDFromURL
     });
     // console.log(projectIDFromURL);
+    // Fetch supporter username dynamically
 
+    const fetchSupporterUsername = async (supporterID) => {
+        try {
+            const response = await fetch(`/users/${supporterID}`);
+            if (!response.ok) throw new Error("Failed to fetch username");
+            const userData = await response.json();
+            return userData.username;
+        } catch (error) {
+            console.error(`Error fetching username for supporter ${supporterID}:`, error);
+            return "Unknown User";
+        }
+    };
 
     const handleChange = (event) => {
         const { id, value, type, checked } = event.target;
@@ -50,7 +61,7 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             ...pledgeInfo,
             project: projectIDFromURL,
         };
-        //formdata define correct?
+        //formdata define correct? why passing project again?
 
         // console.log(formData);
         const validationResult = await pledgeSchema.safeParse(formData);
