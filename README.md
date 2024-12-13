@@ -12,21 +12,18 @@ Currently, two official plugins are available:
 ## TODO
 
 - [] test all scenario with signup form to check error handling
-- [] work on CreateProjectForm, check upload image, add toggle for project open.
-- [] new project page
-- [] create a project button, make a pledge button and user profile button on home page. navigate to homepage once login showing these three buttons.
+- [] work on CreateProjectForm, check upload image,
+
 - [] create user profile
 - [] work on css
 - [] edit project page
-- [] make a pledge form
+
 - [] footer component
 - [] loading spinner component
 - [] change login button to loading and navigate back to homepage
 - []check on my
-- []
-- []Create project working
-- []make a pledge working
-- []
+- [] css project page, bring the comments of supporter , have the photo at left hand side , project details and status right side under it pledges and the pledge button
+- [] fix explore project button
 - []
 - []
 - []
