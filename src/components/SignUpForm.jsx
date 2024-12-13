@@ -48,7 +48,7 @@ function SignUpForm() {
         }
 
         postSignUp(credentials.username, credentials.password).then(() => {
-            navigate("/");
+            navigate("/login");
         })
             .catch(() => {
                 setErrorMessage("Sign-up failed. Please try again.");

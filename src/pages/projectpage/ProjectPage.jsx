@@ -9,6 +9,7 @@ import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css"
 import ProjectCard from "../../components/ProjectCard.jsx";
+import ProgressBar from "../../components/ProgressBar.jsx";
 
 function ProjectPage() {
     // Get project ID from URL
