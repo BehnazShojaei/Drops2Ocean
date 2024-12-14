@@ -31,7 +31,8 @@ function NavBar() {
           )}
           {auth.token && <Link to="/newproject">Create a project</Link>}
 
-
+          {/* link to the featured project there is a div in homepage called project list I want to navigate there */}
+          {/* <div id="project-list"></div> */}
 
           <Link
             to="/"
@@ -41,17 +42,13 @@ function NavBar() {
               setTimeout(() => {
                 const element = document.getElementById("project-list");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
-              }, 100);
+              }, 500);
             }}
           >
-            Featured Projects
+            Explore Projects
           </Link>
 
 
-
-
-          {/* link to the featured project there is a div in homepage called project list I want to navigate there */}
-          {/* <div id="project-list"></div> */}
           <Link to="/contact">Contact</Link>
         </div>
       </nav>

@@ -8,20 +8,25 @@ function LoginPage() {
     const [showSignUp, setShowSignUp] = useState(false);
     const navigate = useNavigate();
 
-
     const handleSignUpClick = () => {
         setShowSignUp(!showSignUp);
     };
     const handleHomePageRedirect = () => {
-        navigate("/homepage"); // Redirect to homepage
+        navigate("/homepage", { state: { showButtons: true } }); // Pass state to homepage
     };
+
+    //I added forgot password for now, need to add the route to main, make a page for it. 
     return (
         <div className="login-page">
             <div className="login-section">
 
                 <h2>Login</h2>
-                <p>Willing to create a project or make a pledge? Please login below.</p>
+                <p>Willing to create a project or make a pledge? Please login below:</p>
                 <LoginForm />
+                <button onClick={() => navigate("/forgot-password")} className="button forgot-password">
+                    Forgot Password?
+                </button>
+
                 <p>Or</p>
             </div>
 

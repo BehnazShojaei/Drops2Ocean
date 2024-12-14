@@ -1,52 +1,39 @@
-/* Container for the progress bar */
+/* Main container holding the progress bar and text */
 .progress-container {
-    width: 100%;
-    background-color: #e0e0e0; /* Light gray background for the bar */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Ensures the inner bar doesn’t overflow */
-    position: relative;
-    margin: 10px 0; /* Add some vertical spacing */
-    height: 20px; /* Bar height */
+    width: 100%; /* Full width of the parent */
+    background-color: #f3f3f3; /* Light gray background for the container */
+    border-radius: 8px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures rounded corners apply properly */
+    margin: 20px auto; /* Centers container and adds space around it */
+    text-align: center; /* Center aligns the text below */
+    font-family: Arial, sans-serif; /* Consistent font */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds slight shadow for depth */
 }
 
-/* The progress fill */
+/* The progress bar that dynamically fills */
 .progress-bar {
-    height: 100%; /* Fills the height of the container */
-    background-color: #1e90ff; /* Nice blue progress color */
-    transition: width 0.5s ease-in-out; /* Smooth transition for progress updates */
+    height: 20px; /* Height of the bar */
+    background-color: #4caf50; /* Green color for the filled part */
+    transition: width 0.5s ease; /* Smooth animation for width changes */
+    border-radius: 8px 8px 0 0; /* Rounded corners only on top */
 }
 
-/* Text to display raised amount and goal */
-.progress-text {
-    text-align: center; /* Center align the text */
-    font-size: 14px; /* Adjust text size */
-    font-weight: bold; /* Make it stand out */
-    color: #333; /* Dark gray text for readability */
-    margin-top: 5px; /* Spacing below the bar */
-}
-/* Container for the progress bar */
-.progress-container {
-    width: 100%;
-    background-color: #e0e0e0; /* Light gray background for the bar */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Ensures the inner bar doesn’t overflow */
-    position: relative;
-    margin: 10px 0; /* Add some vertical spacing */
-    height: 20px; /* Bar height */
+/* The text below the progress bar */
+.progress-container p {
+    margin: 10px 0; /* Adds space between the bar and text */
+    color: #333; /* Dark gray for better readability */
+    font-size: 14px; /* Appropriately sized text */
+    font-weight: bold; /* Bold font for emphasis */
+    line-height: 1.5; /* Better spacing for multiline text */
 }
 
-/* The progress fill */
-.progress-bar {
-    height: 100%; /* Fills the height of the container */
-    background-color: #1e90ff; /* Nice blue progress color */
-    transition: width 0.5s ease-in-out; /* Smooth transition for progress updates */
-}
+/* Optional: For responsiveness */
+@media (max-width: 600px) {
+    .progress-container {
+        font-size: 12px; /* Adjust text size for smaller screens */
+    }
 
-/* Text to display raised amount and goal */
-.progress-text {
-    text-align: center; /* Center align the text */
-    font-size: 14px; /* Adjust text size */
-    font-weight: bold; /* Make it stand out */
-    color: #333; /* Dark gray text for readability */
-    margin-top: 5px; /* Spacing below the bar */
+    .progress-bar {
+        height: 15px; /* Adjust bar height for smaller screens */
+    }
 }

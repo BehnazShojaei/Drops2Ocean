@@ -1,6 +1,6 @@
 /* Project Card Container */
 .project-card {
-  background-color: #ffffff;
+  background-color: hsl(0, 0%, 100%);
   border: none;
   border-radius: 8px;
   box-shadow: none;
@@ -9,6 +9,12 @@
   text-align: center;
   width: 300px;
   margin: 20px auto;
+  text-align: center; 
+  font-size: 14px; 
+  font-weight: bold; /* Make it stand out */
+  color: #333; /* Dark gray text for readability */
+  margin-top: 50px; /* Spacing below the bar */
+}
 }
 
 
