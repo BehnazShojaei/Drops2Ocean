@@ -1,39 +1,45 @@
-/* Main container holding the progress bar and text */
+/* Main container holding the progress bar */
 .progress-container {
-    width: 100%; /* Full width of the parent */
-    background-color: #f3f3f3; /* Light gray background for the container */
-    border-radius: 8px; /* Rounded corners for the container */
-    overflow: hidden; /* Ensures rounded corners apply properly */
-    margin: 20px auto; /* Centers container and adds space around it */
-    text-align: center; /* Center aligns the text below */
-    font-family: Arial, sans-serif; /* Consistent font */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds slight shadow for depth */
+    width: 100%;
+    background-color: #f3f3f3; /* Light gray background */
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px auto;
+    position: relative; /* Enables child positioning */
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* The progress bar that dynamically fills */
+/* The dynamic progress bar */
 .progress-bar {
-    height: 20px; /* Height of the bar */
-    background-color: #4caf50; /* Green color for the filled part */
-    transition: width 0.5s ease; /* Smooth animation for width changes */
-    border-radius: 8px 8px 0 0; /* Rounded corners only on top */
+    height: 20px;
+    background-color: #4caf50; /* Green for progress */
+    transition: width 0.5s ease;
 }
 
-/* The text below the progress bar */
-.progress-container p {
-    margin: 10px 0; /* Adds space between the bar and text */
-    color: #333; /* Dark gray for better readability */
-    font-size: 14px; /* Appropriately sized text */
-    font-weight: bold; /* Bold font for emphasis */
-    line-height: 1.5; /* Better spacing for multiline text */
+/* Text overlay inside the progress bar */
+.progress-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Centers text both vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* White text for contrast */
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1; /* Ensures text is above the progress bar */
 }
 
-/* Optional: For responsiveness */
+/* Optional: Responsive design */
 @media (max-width: 600px) {
-    .progress-container {
-        font-size: 12px; /* Adjust text size for smaller screens */
+    .progress-bar {
+        height: 15px;
     }
 
-    .progress-bar {
-        height: 15px; /* Adjust bar height for smaller screens */
+    .progress-text {
+        font-size: 12px;
     }
 }
