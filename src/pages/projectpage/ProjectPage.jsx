@@ -101,22 +101,27 @@ function ProjectPage() {
                 </h4>
                 <h3>Pledges:</h3>
                 <ul>
-
-
                     {project.pledges && project.pledges.length > 0 ? (
                         project.pledges.map((pledgeData, index) => (
-                            <li key={index}>
-                                ${pledgeData.amount} from{" "}
-                                {pledgeData.anonymous
-                                    ? "Anonymous"
-                                    : supporterUsernames[pledgeData.supporter] || "Loading..."}
+                            <li key={index} className="pledge-item">
+                                <div>
+                                    ${pledgeData.amount} from{" "}
+                                    {pledgeData.anonymous
+                                        ? "Anonymous"
+                                        : supporterUsernames[pledgeData.supporter] || "Loading..."}
+                                </div>
+                                {pledgeData.comment && (
+                                    <div className="pledge-comment">
+                                        {pledgeData.comment}
+                                    </div>
+                                )}
                             </li>
                         ))
                     ) : (
                         <li>Be the first to support this project!</li>
                     )}
-
                 </ul>
+
 
             </div>
 
