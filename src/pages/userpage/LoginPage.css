@@ -17,7 +17,7 @@ body {
     padding: 20px;
 }
 
-/* Login and Signup Section */
+/* Shared Section Container */
 .login-section, .signup-section {
     width: 100%;
     max-width: 400px;
@@ -49,7 +49,7 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    box-sizing: border-box; /* Prevent box sizing issues */
+    box-sizing: border-box;
 }
 
 /* Unified Button Styling */
@@ -57,7 +57,7 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
     background-color: #1E3A8A; /* Unified button color */
     color: #fff;
     border: none;
-    width: 100%; /* Buttons take full width */
+    width: 100%;
     padding: 10px 0;
     margin-top: 10px;
     font-size: 1em;
@@ -74,8 +74,8 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
 
 /* Forgot Password Button Styling */
 .forgot-password {
-    background-color: #1E3A8A; /* Match other buttons */
-    color: white; /* Text color */
+    background-color: #1E3A8A;
+    color: white;
     text-decoration: none;
     font-size: 1em;
     font-weight: bold;
@@ -89,8 +89,42 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
 }
 
 .forgot-password:hover {
-    background-color: rgb(3, 86, 111); /* Hover color */
+    background-color: rgb(3, 86, 111);
     text-decoration: none;
+}
+
+/* Separator for "or" */
+.separator {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+    margin: 0 10px;
+}
+
+.separator span {
+    color: #777;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Signup Form Container */
+.signup-container {
+    display: none; /* Hidden initially */
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.signup-container.active {
+    display: block; /* Show when toggled */
 }
 
 /* Navbar Styling (HomePage Navigation) */
