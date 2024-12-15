@@ -15,8 +15,7 @@ function ProgressBar({ goal = 0 }) {
     return (
         <div className="progress-container">
             <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
-            <p className="progress-text">
-                ${totalRaised} raised of ${goal} goal
+            <p>    ${totalRaised} raised of ${goal} goal
             </p>
         </div>
     );

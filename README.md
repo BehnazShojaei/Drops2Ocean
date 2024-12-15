@@ -23,9 +23,8 @@ Currently, two official plugins are available:
 - [] change login button to loading and navigate back to homepage
 - []check on my
 - [] css project page, bring the comments of supporter , have the photo at left hand side , project details and status right side under it pledges and the pledge button
-- [] fix explore project button
-- []
-- []
+- [] add loading and raise error nicely
+- [] delete project
 - []
 - []
 - []
