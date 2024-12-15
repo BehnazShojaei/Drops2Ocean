@@ -82,55 +82,72 @@ function ProjectPage() {
 
     return (
         <>
-            <div className="project-container">
-                <h2 className="project-title">{project.title}</h2>
-                <div className="progress-status">
-                    <ProgressBar goal={project.goal} pledges={project.pledges ?? []} />
+            <div className="project-section">
+
+                <ProjectCard projectData={project} />
+
+                {/* image project from whatever uploaded already */}
+                <h4>Created at: {new Date(project.date_created).toLocaleDateString("en-AU", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                })}
+                </h4>
+                <h4>
+                    Status:
                     <span className={`status-badge ${project.is_open ? "" : "closed"}`}>
-                        {project.is_open ? "Closed" : "Open"}
+                        {project.is_open ? "Open" : "Closed"}
                     </span>
-                </div>
-
-                <div className="project-details">
-                    <img src={project.image} alt="project visual" className="project-image" />
-
-                    <div className="project-info">
-                        <p className="project-description">{project.description}</p>
-
-                        {/* Make a Pledge Button */}
-                        <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
-                            Make a Pledge
-                        </button>
-
-                        {/* Pledge Form */}
-                        {showPledgeForm && (
-                            <MakePledgeForm onPledgeSubmitted={handlePledgeSuccess} />
-                        )}
-
-                        {/* Pledges List */}
-                        <div className="pledges-section">
-                            {project.pledges && project.pledges.length > 0 ? (
-                                project.pledges.map((pledgeData, index) => (
-                                    <div key={index} className="pledge-item">
-                                        <strong>
-                                            {pledgeData.anonymous
-                                                ? "Anonymous"
-                                                : supporterUsernames[pledgeData.supporter] || "Loading..."}
-                                        </strong>{" "}
-                                        pledged ${pledgeData.amount}
-                                        {pledgeData.comment && (
-                                            <p className="pledge-comment">{pledgeData.comment}</p>
-                                        )}
+                </h4>
+                <h3>Pledges:</h3>
+                <ul>
+                    {project.pledges && project.pledges.length > 0 ? (
+                        project.pledges.map((pledgeData, index) => (
+                            <li key={index} className="pledge-item">
+                                <div>
+                                    ${pledgeData.amount} from{" "}
+                                    {pledgeData.anonymous
+                                        ? "Anonymous"
+                                        : supporterUsernames[pledgeData.supporter] || "Loading..."}
+                                </div>
+                                {pledgeData.comment && (
+                                    <div className="pledge-comment">
+                                        {pledgeData.comment}
                                     </div>
-                                ))
-                            ) : (
-                                <p className="no-pledges">Be the first to support this project!</p>
-                            )}
-                        </div>
-                    </div>
-                </div>
+                                )}
+                            </li>
+                        ))
+                    ) : (
+                        <li>Be the first to support this project!</li>
+                    )}
+                </ul>
+
+
             </div>
-        </>);
+
+            <div className="pledge-section">
+                {/* Show "Make a Pledge" button if form is hidden */}
+                {!showPledgeForm && (
+                    <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
+                        Make a Pledge
+                    </button>
+                )}
+
+                {/* Show the PledgeForm if button is clicked */}
+                {showPledgeForm && (
+                    <div className="pledge-form">
+                        <MakePledgeForm onPledgeSubmitted={handlePledgeSuccess} />
+
+                        {/* <MakePledgeForm onPledgeSuccess={() => refetchProject()} /> */}
+                        {/* should i remove refetch here, uSE A refetch project data post submit? */}
+                        <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
+                            Cancel
+                        </button>
+                    </div>
+                )}
+            </div>
+        </>
+    );
 }
 
 export default ProjectPage;
