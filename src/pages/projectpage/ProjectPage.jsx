@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 import useProject from "../../hooks/use-project.js";
 import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
-import "../projectpage/ProjectPage.css"
+import "../projectpage/ProjectPage.css";
 import ProjectCard from "../../components/ProjectCard.jsx";
 
 function ProjectPage() {
     // Get project ID from URL
     const { id: projectId } = useParams();
     const { project, isLoading, error, refetch } = useProject(projectId);
-    // we can refetch function here then need to update api 
+    // we can use refetch function here when we need to update the API 
     const [supporterUsernames, setSupporterUsernames] = useState({});
 
-    // State to see toggle 
+    // State to toggle pledge form visibility
     const [showPledgeForm, setShowPledgeForm] = useState(false);
 
     // Toggle function for PledgeForm
@@ -21,8 +21,7 @@ function ProjectPage() {
         setShowPledgeForm(!showPledgeForm);
     };
 
-
-    //Fetch username dynamically based on supporter ID
+    // Fetch username dynamically based on supporter ID
     const fetchSupporterUsername = async (supporterID) => {
         try {
             const url = `${import.meta.env.VITE_API_URL}/users/${supporterID}/`;
@@ -41,7 +40,6 @@ function ProjectPage() {
             return "Unknown User";
         }
     };
-
 
     // Populate supporter usernames for pledges
     useEffect(() => {
@@ -62,7 +60,6 @@ function ProjectPage() {
         }
     }, [project]);
 
-
     const handlePledgeSuccess = () => {
         refetch(); // Refetch project data to update pledges
         setShowPledgeForm(false); // Hide the form after submission
@@ -76,55 +73,49 @@ function ProjectPage() {
         return <p>Error fetching project: {error.message}</p>;
     }
 
-    // list of pledges money from ananymous or money from username 
+    // list of pledges money from anonymous or money from username 
     // toggle for project status open or closed
-
 
     return (
         <>
             <div className="project-section">
-
                 <ProjectCard projectData={project} />
 
-                {/* image project from whatever uploaded already */}
+                {/* Image project from whatever uploaded already */}
                 <h4>Created at: {new Date(project.date_created).toLocaleDateString("en-AU", {
                     day: "2-digit",
                     month: "2-digit",
                     year: "numeric",
                 })}
                 </h4>
+
+                {/* Project Status */}
                 <h4>
                     Status:
                     <span className={`status-badge ${project.is_open ? "" : "closed"}`}>
                         {project.is_open ? "Open" : "Closed"}
                     </span>
                 </h4>
+
+                {/* Pledges Section */}
                 <h3>Pledges:</h3>
                 <ul>
                     {project.pledges && project.pledges.length > 0 ? (
                         project.pledges.map((pledgeData, index) => (
-                            <li key={index} className="pledge-item">
-                                <div>
-                                    ${pledgeData.amount} from{" "}
-                                    {pledgeData.anonymous
-                                        ? "Anonymous"
-                                        : supporterUsernames[pledgeData.supporter] || "Loading..."}
-                                </div>
-                                {pledgeData.comment && (
-                                    <div className="pledge-comment">
-                                        {pledgeData.comment}
-                                    </div>
-                                )}
+                            <li key={index}>
+                                ${pledgeData.amount} from{" "}
+                                {pledgeData.anonymous
+                                    ? "Anonymous"
+                                    : supporterUsernames[pledgeData.supporter] || "Loading..."}
                             </li>
                         ))
                     ) : (
                         <li>Be the first to support this project!</li>
                     )}
                 </ul>
-
-
             </div>
 
+            {/* Pledge Form Section */}
             <div className="pledge-section">
                 {/* Show "Make a Pledge" button if form is hidden */}
                 {!showPledgeForm && (
@@ -139,7 +130,7 @@ function ProjectPage() {
                         <MakePledgeForm onPledgeSubmitted={handlePledgeSuccess} />
 
                         {/* <MakePledgeForm onPledgeSuccess={() => refetchProject()} /> */}
-                        {/* should i remove refetch here, uSE A refetch project data post submit? */}
+                        {/* should I remove refetch here, use refetch project data post submit? */}
                         <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
                             Cancel
                         </button>
