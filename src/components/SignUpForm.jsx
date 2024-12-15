@@ -57,7 +57,7 @@ function SignUpForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {errorMessage}
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error in red */}
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -81,7 +81,7 @@ function SignUpForm() {
             <div>
                 <label htmlFor="confirmPassword">Confirm Password:</label>
                 <input
-                    type="confirmPassword"
+                    type="password"
                     id="confirmPassword"
                     placeholder="Confirm password"
                     value={credentials.confirmPassword}
