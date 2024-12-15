@@ -42,22 +42,22 @@ p {
 }
 
 /* Input Fields */
-input[type="text"], input[type="password"] {
-    width: 90%;
+input[type="text"], input[type="password"], input[type="confirmPassword"] {
+    width: 100%; /* Ensure all inputs take full width */
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Prevent box sizing issues */
 }
 
 /* Unified Button Styling */
 .button {
-    background-color: #1E3A8A; /* Unified green color */
+    background-color: #1E3A8A; /* Unified button color */
     color: #fff;
     border: none;
-    width: 100%; /* Buttons have the same width */
+    width: 100%; /* Buttons take full width */
     padding: 10px 0;
     margin-top: 10px;
     font-size: 1em;
@@ -69,20 +69,28 @@ input[type="text"], input[type="password"] {
 }
 
 .button:hover {
-    background-color: rgb(3, 86, 111); /* Slightly darker green on hover */
+    background-color: rgb(3, 86, 111); /* Slightly darker blue on hover */
 }
 
-/* Forgot Password Link */
+/* Forgot Password Button Styling */
 .forgot-password {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
+    background-color: #1E3A8A; /* Match other buttons */
+    color: white; /* Text color */
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 0;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .forgot-password:hover {
-    text-decoration: underline;
+    background-color: rgb(3, 86, 111); /* Hover color */
+    text-decoration: none;
 }
 
 /* Navbar Styling (HomePage Navigation) */
