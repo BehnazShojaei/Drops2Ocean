@@ -1,30 +1,66 @@
 # React + Vite
 
-https://drops2ocean.netlify.app/
+## Live Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Visit Drops2Ocean](https://drops2ocean.netlify.app/)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Project Name**
 
-## TODO
+**Drops2Ocean**
 
-- [] test all scenario with signup form to check error handling
-- [] work on CreateProjectForm, check upload image,
+---
 
-- [] create user profile
-- [] work on css
-- [] edit project page
+## **Concept**
 
-- [] footer component
-- [] loading spinner component
-- [] change login button to loading and navigate back to homepage
-- []check on my
-- [] css project page, bring the comments of supporter , have the photo at left hand side , project details and status right side under it pledges and the pledge button
-- [] add loading and raise error nicely
-- [] delete project
-- []
-- []
-- []
+**Help people to be employable!**
+
+Drops2Ocean is a platform dedicated to supporting individuals in advancing their learning, skills, and networking opportunities.
+
+---
+
+## **Intended Audience / User Stories**
+
+This platform is for anyone seeking:
+
+- **Skill Development**: Gain new skills by securing premium memberships for online learning platforms like LinkedIn Premium and Udemy.
+- **Career Preparation**: Get help with preparing resumes, attending networking events, and dressing for interviews.
+- **Networking**: Build meaningful connections to enhance employability and career growth.
+
+Whether you’re looking to **upgrade your skillset**, prepare for the **next job interview**, or make **valuable connections**, **Drops2Ocean** is here to support you every step of the way.
+
+---
+
+## ** Used**
+
+- Enable media upload
+- progress bar
+- Error handling for making projects/pledges
+- Error handling for login
+-
+
+---
+
+## **Features**
+
+- Crowdfunding functionality for employability goals.
+- Progress tracking and status updates for campaigns.
+- User pledge and commenting system.
+
+---
+
+## **How to Use**
+
+1. Visit [Drops2Ocean](https://drops2ocean.netlify.app/).
+2. Browse existing projects or create a new one.
+3. Make pledges to support others on their learning journey.
+
+---
+
+## **Future Enhancements**
+
+- User Authentication and Profiles.
+- Search and Filter Features.
+
+---

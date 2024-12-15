@@ -147,3 +147,9 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
 .navbar button:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin: 10px 0;
+}
