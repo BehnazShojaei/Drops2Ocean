@@ -1,119 +1,112 @@
-/* General Styling */
-body {
+/* General Container */
+.project-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa; /* Light gray background */
-}
-
-/* Project Section Container */
-.project-section {
-    background-color: #ffffff;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.project-section h2 {
+  }
+  
+  /* Title */
+  .project-title {
+    font-size: 2em;
     color: #004085;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-}
-
-.project-section h3 {
-    color: #555;
-    font-size: 1.1em;
-    margin: 10px 0;
-}
-
-.project-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 15px;
-}
-
-.project-section li {
-    background-color: #f0f4f8;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #333;
-    font-size: 1em;
-}
-
-/* Pledge Section Styling */
-.pledge-section {
-    background-color: #ffffff;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.pledge-section .pledge-toggle-btn {
-    background-color: #1E3A8A;
-    color: #ffffff;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-}
-
-.pledge-section .pledge-toggle-btn:hover {
-    background-color: rgb(3, 86, 111);
-}
-
-/* Pledge Form */
-.pledge-form {
-    margin-top: 15px;
-}
-
-.pledge-form input[type="text"],
-.pledge-form input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-}
-
-/* Loading Spinner */
-img[alt="Loading..."] {
-    display: block;
-    margin: 20px auto;
-    width: 50px;
-    height: 50px;
-}
-
-/* Error Message */
-p {
-    color: red;
-    font-size: 1em;
-    text-align: center;
-}
-
-.status-badge {
-    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  /* Progress Bar and Status */
+  .progress-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .status-badge {
     padding: 6px 12px;
-    color: white;
     font-weight: bold;
     border-radius: 12px;
-    background-color: #28a745; /* Green for Open */
-}
-
-.status-badge.closed {
+    color: white;
+  }
+  
+  .status-badge.closed {
     background-color: #dc3545; /* Red for Closed */
-}
+  }
+  
+  .status-badge.open {
+    background-color: #28a745; /* Green for Open */
+  }
+  
+  /* Project Details Section */
+  .project-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .project-image {
+    max-width: 40%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .project-info {
+    flex: 1;
+  }
+  
+  .project-description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  /* Pledge Button */
+  .pledge-toggle-btn {
+    display: inline-block;
+    background-color: #1E3A8A;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .pledge-toggle-btn:hover {
+    background-color: #1456b8;
+  }
+  
+  /* Pledges Section */
+  .pledges-section {
+    margin-top: 10px;
+  }
+  
+  .pledge-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.95em;
+    color: #333;
+  }
+  
+  .pledge-comment {
+    margin-top: 5px;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .no-pledges {
+    color: #777;
+    font-size: 0.95em;
+    text-align: center;
+  }
+  
