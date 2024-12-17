@@ -38,9 +38,7 @@ Whether you’re looking to **upgrade your skillset**, prepare for the **next jo
 - progress bar
 - Error handling for making projects/pledges
 - Error handling for login
--
-
----
+- ***
 
 ## **Features**
 
@@ -64,3 +62,6 @@ Whether you’re looking to **upgrade your skillset**, prepare for the **next jo
 - Search and Filter Features.
 
 ---
+
+Note for myself: working-develop is the branch from which project submission has been done!
+About to stat working on backend-improvement with a new heroku url
