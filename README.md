@@ -16,25 +16,13 @@
 
 **Help people to be employable!**
 
-Drops2Ocean is a platform dedicated to supporting individuals in advancing their learning, skills, and networking opportunities.
-
----
-
-## **Intended Audience / User Stories**
-
-This platform is for anyone seeking:
-
-- **Skill Development**: Gain new skills by securing premium memberships for online learning platforms like LinkedIn Premium and Udemy.
-- **Career Preparation**: Get help with preparing resumes, attending networking events, and dressing for interviews.
-- **Networking**: Build meaningful connections to enhance employability and career growth.
-
-Whether you’re looking to **upgrade your skillset**, prepare for the **next job interview**, or make **valuable connections**, **Drops2Ocean** is here to support you every step of the way.
+Drops2Ocean is a platform dedicated to supporting individuals in advancing their learning, skills, and networking opportunities.Whether you’re looking to **upgrade your skillset**, prepare for the **next job interview**, or make **valuable connections**, **Drops2Ocean** is here to support you every step of the way.
 
 ---
 
 ## ** Used**
 
-- Enable media upload
+- Enable media upload (has been disabled for submissions, need some more work from backend)
 - progress bar
 - Error handling for making projects/pledges
 - Error handling for login
@@ -51,15 +39,16 @@ Whether you’re looking to **upgrade your skillset**, prepare for the **next jo
 ## **How to Use**
 
 1. Visit [Drops2Ocean](https://drops2ocean.netlify.app/).
-2. Browse existing projects or create a new one.
+2. Browse existing projects or create a new one after you signed up.
 3. Make pledges to support others on their learning journey.
 
 ---
 
 ## **Future Enhancements**
 
-- User Authentication and Profiles.
+- User Profiles.
 - Search and Filter Features.
+- Better UI experience
 
 ---
 
