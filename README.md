@@ -54,5 +54,6 @@ Drops2Ocean is a platform dedicated to supporting individuals in advancing their
 ![Project Card - Open](screenshots/project-page-open-status.png)
 ![Project Card - Closed](screenshots/project-page-closed-status.png)
 
+temporary UI, will work to make it better specially the project page.
 Note for myself: working-develop is the branch from which project submission has been done!
 About to stat working on backend-improvement with a new heroku url
