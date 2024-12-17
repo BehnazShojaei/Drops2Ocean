@@ -1,7 +1,9 @@
 import useProjects from "../../hooks/use-projects";
 import ProjectCard from "../../components/ProjectCard";
 import "./HomePage.css";
-import dropimage from "../../assets/bannerphoto.jpg";
+import dropimage from "/src/assets/drop-of-water-578897_1920 (1).jpg";
+
+
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
@@ -35,7 +37,7 @@ function HomePage() {
         {/* console.log(projectData); */}
         {/* render projects */}
         {projects.map((projectData, index) => {
-          return <ProjectCard key={index} projectData={projectData} pledges />
+          return <ProjectCard key={index} projectData={projectData} />
         })}
       </div>
     </>
