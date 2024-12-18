@@ -14,6 +14,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 15px; /* Padding around the entire card */
 }
+.project-heading {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.6em;
+}
 
 .project-card:hover {
   transform: translateY(-5px);
@@ -75,7 +81,5 @@
     padding: 10px; /* Adjust padding */
   }
 
-  .project-card h3 {
-    font-size: 1em; /* Smaller heading font for smaller screens */
-  }
+ 
 }
