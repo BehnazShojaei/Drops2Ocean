@@ -1,27 +1,32 @@
 import { useState, useEffect } from "react";
-import getPledges from "../api/pledge/get-pledges";
-
+import getProject from "../api/project/get-project";
 
 export default function usePledges(projectId) {
-    
-    const [pledges, setPledges] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState();
+  const [totalAmount, setTotalAmount] = useState(0); // Total pledge amount
+  const [pledges, setPledges] = useState([]);        // List of pledges
+  const [isLoading, setIsLoading] = useState(true);  // Loading state
+  const [error, setError] = useState(null);          // Error state
 
+  useEffect(() => {
+    if (!projectId) return; // Exit early if no projectId
 
-    useEffect(() => {
-        getPledges(projectId)
-          .then((fetchedPledges) => {
-            setPledges(fetchedPledges);
-            setIsLoading(false);
-          })
-          .catch((error) => {
-            setError(error);
-            setIsLoading(false);
-          });
-      }, [projectId]); //re run when projectId change
-    
-      // Finally, we return the state variables and the error. As the state in this hook changes it will update these values and the component using this hook will re-render.
-      return { pledges, isLoading, error };
-    }
-  
+    getProject(projectId)
+      .then((projectData) => {
+        // Extract pledges from project data
+        const pledgesData = projectData.pledges || [];
+
+        // Calculate total amount
+        const sumAmount = pledgesData.reduce((total, pledge) => total + pledge.amount, 0);
+
+        setPledges(pledgesData); // Store pledges list
+        setTotalAmount(sumAmount); // Store total amount
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error); 
+        setIsLoading(false);
+      });
+  }, [projectId]); // Re-run when projectId changes
+
+  return { pledges, totalAmount, isLoading, error };
+}
