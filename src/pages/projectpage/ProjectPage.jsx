@@ -5,6 +5,7 @@ import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css";
 import ProjectCard from "../../components/ProjectCard.jsx";
+import ProgressBar from "../../components/ProgressBar.jsx";
 
 function ProjectPage() {
     // Get project ID from URL
@@ -25,7 +26,7 @@ function ProjectPage() {
     const fetchSupporterUsername = async (supporterID) => {
         try {
             const url = `${import.meta.env.VITE_API_URL}/users/${supporterID}/`;
-            console.log("Fetching from URL:", url); // Debugging the full URL
+            // console.log("Fetching from URL:", url); // Debugging the full URL
             const response = await fetch(url);
 
             if (!response.ok) {
@@ -77,67 +78,70 @@ function ProjectPage() {
     // toggle for project status open or closed
 
     return (
-        <>
-            <div className="project-section">
-                <ProjectCard projectData={project} />
+        <div className="project-page-container">
+            {/* Project Title */}
+            <h1 className="project-title">{project.title}</h1>
 
-                {/* Image project from whatever uploaded already */}
-                <h4>Created at: {new Date(project.date_created).toLocaleDateString("en-AU", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                })}
-                </h4>
-
-                {/* Project Status */}
-                <h4>
-                    Status:
-                    <span className={`status-badge ${project.is_open ? "" : "closed"}`}>
-                        {project.is_open ? "Open" : "Closed"}
-                    </span>
-                </h4>
-
-                {/* Pledges Section */}
-                <h3>Pledges:</h3>
-                <ul>
-                    {project.pledges && project.pledges.length > 0 ? (
-                        project.pledges.map((pledgeData, index) => (
-                            <li key={index}>
-                                ${pledgeData.amount} from{" "}
-                                {pledgeData.anonymous
-                                    ? "Anonymous"
-                                    : supporterUsernames[pledgeData.supporter] || "Loading..."}
-                            </li>
-                        ))
-                    ) : (
-                        <li>Be the first to support this project!</li>
-                    )}
-                </ul>
+            {/* Status Section */}
+            <div className="project-status">
+                <span className={`status-badge ${project.is_open ? "open" : "closed"}`}>
+                    {project.is_open ? "OPEN" : "CLOSED"}
+                </span>
+                <p>Created at: {new Date(project.date_created).toLocaleDateString()}</p>
             </div>
 
-            {/* Pledge Form Section */}
-            <div className="pledge-section">
-                {/* Show "Make a Pledge" button if form is hidden */}
-                {!showPledgeForm && (
-                    <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
+            {/* Content Grid */}
+            <div className="project-content">
+                {/* Left Side */}
+                <div className="project-left">
+                    <img src={project.image} alt="Project visual" className="project-image" />
+
+                    {/* Progress Bar */}
+                    <ProgressBar goal={project.goal} pledges={project.pledges} />
+
+                    <button onClick={handlePledgeRequest} className="button">
                         Make a Pledge
                     </button>
-                )}
+                </div>
 
-                {/* Show the PledgeForm if button is clicked */}
-                {showPledgeForm && (
-                    <div className="pledge-form">
-                        <MakePledgeForm onPledgeSubmitted={handlePledgeSuccess} />
+                {/* Right Side */}
+                <div className="project-right">
+                    <h2>Description</h2>
+                    <p>{project.description}</p>
 
-                        {/* <MakePledgeForm onPledgeSuccess={() => refetchProject()} /> */}
-                        {/* should I remove refetch here, use refetch project data post submit? */}
-                        <button onClick={handlePledgeRequest} className="pledge-toggle-btn">
-                            Cancel
-                        </button>
-                    </div>
-                )}
+                    <h3>Pledges:</h3>
+                    <ul>
+                        {project.pledges && project.pledges.length > 0 ? (
+                            project.pledges.map((pledge, index) => (
+                                <li key={index}>
+                                    ${pledge.amount} from{" "}
+                                    {pledge.anonymous
+                                        ? "Anonymous"
+                                        : supporterUsernames[pledge.supporter] || "Loading..."}
+                                    {pledge.comment && (
+                                        <div className="pledge-comment">
+                                            <em>— "{pledge.comment}"</em>
+                                        </div>
+                                    )}
+                                </li>
+                            ))
+                        ) : (
+                            <li>No pledges yet. Be the first to support this project!</li>
+                        )}
+                    </ul>
+                </div>
             </div>
-        </>
+
+            {/* Pledge Form */}
+            {showPledgeForm && (
+                <div className="pledge-form-container">
+                    <MakePledgeForm onPledgeSubmitted={refetch} />
+                    <button onClick={handlePledgeRequest} className="button">
+                        Cancel
+                    </button>
+                </div>
+            )}
+        </div>
     );
 }
 

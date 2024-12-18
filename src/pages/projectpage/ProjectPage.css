@@ -1,119 +1,113 @@
-/* General Styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa; /* Light gray background */
-}
-
-/* Project Section Container */
-.project-section {
-  background-color: #ffffff;
-  max-width: 600px;
+/* Container */
+.project-page-container {
+  max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
 }
 
-.project-section h2 {
+/* Project Title */
+.project-title {
+  font-size: 2.5em;
+  text-align: center;
   color: #004085;
-  font-size: 1.8em;
   margin-bottom: 10px;
 }
 
-.project-section h3 {
-  color: #555;
-  font-size: 1.1em;
-  margin: 10px 0;
-}
-
-.project-section ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-.project-section li {
-  background-color: #f0f4f8;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  color: #333;
-  font-size: 1em;
-}
-
-/* Pledge Section Styling */
-.pledge-section {
-  background-color: #ffffff;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Project Status */
+.project-status {
   text-align: center;
-}
-
-.pledge-section .pledge-toggle-btn {
-  background-color: #1E3A8A;
-  color: #ffffff;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s ease;
-}
-
-.pledge-section .pledge-toggle-btn:hover {
-  background-color: rgb(3, 86, 111);
-}
-
-/* Pledge Form */
-.pledge-form {
-  margin-top: 15px;
-}
-
-.pledge-form input[type="text"],
-.pledge-form input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-  box-sizing: border-box;
-}
-
-/* Loading Spinner */
-img[alt="Loading..."] {
-  display: block;
-  margin: 20px auto;
-  width: 50px;
-  height: 50px;
-}
-
-/* Error Message */
-p {
-  color: red;
-  font-size: 1em;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 .status-badge {
   display: inline-block;
   padding: 6px 12px;
-  color: white;
+  font-size: 1em;
   font-weight: bold;
-  border-radius: 12px;
-  background-color: #28a745; /* Green for Open */
+  color: #fff;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.status-badge.open {
+  background-color: #28a745;
 }
 
 .status-badge.closed {
-  background-color: #dc3545; /* Red for Closed */
+  background-color: #e74c3c;
+}
+
+/* Content Grid */
+.project-content {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.project-left,
+.project-right {
+  flex: 1;
+}
+
+.project-left {
+  text-align: center;
+}
+
+.project-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.pledge-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pledge-btn:hover {
+  background-color: #0056b3;
+}
+
+.pledge-btn.cancel {
+  background-color: #6c757d;
+}
+
+.project-right h2,
+.project-right h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.project-right p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #555;
+}
+
+.project-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.project-right ul li {
+  background-color: #f8f9fa;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
