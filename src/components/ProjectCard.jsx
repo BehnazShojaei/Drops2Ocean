@@ -5,7 +5,7 @@ import ProgressBar from "./ProgressBar.jsx";
 
 
 function ProjectCard(props) {
-    const { projectData } = props;
+    const { projectData, customClass = "" } = props;
     const projectLink = `project/${projectData.id}`;
     const image = `${projectData.image}` ?? "";
 
