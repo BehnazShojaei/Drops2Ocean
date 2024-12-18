@@ -97,7 +97,7 @@ function ProjectPage() {
                     <img src={project.image} alt="Project visual" className="project-image" />
 
                     {/* Progress Bar */}
-                    <ProgressBar goal={project.goal} pledges={project.pledges} />
+                    <ProgressBar projectId={project.id} goal={project.goal} pledges={project.pledges} />
 
                     <button onClick={handlePledgeRequest} className="button">
                         Make a Pledge
@@ -114,13 +114,13 @@ function ProjectPage() {
                         {project.pledges && project.pledges.length > 0 ? (
                             project.pledges.map((pledge, index) => (
                                 <li key={index}>
-                                    ${pledge.amount} from{" "}
+                                    ${pledge.amount} from {" "}
                                     {pledge.anonymous
                                         ? "Anonymous"
                                         : supporterUsernames[pledge.supporter] || "Loading..."}
                                     {pledge.comment && (
                                         <div className="pledge-comment">
-                                            <em>— "{pledge.comment}"</em>
+                                            <em> "{pledge.comment}"</em>
                                         </div>
                                     )}
                                 </li>
