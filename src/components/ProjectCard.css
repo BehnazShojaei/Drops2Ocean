@@ -6,12 +6,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
-  width: 300px; /* Fixed width for the card */
+  width: 320px; /* Slightly wider card */
   margin: 20px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px; /* Padding around the entire card */
 }
 
 .project-card:hover {
@@ -19,21 +20,33 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Project Image */
-.project-card img {
-  width: 100%; /* Force image to fit card width */
-  height: 200px; /* Set a fixed height */
-  object-fit: cover; /* Maintain aspect ratio and crop overflow */
-  object-position: center; /* Center the image content */
-  border-bottom: 1px solid #ddd;
+/* Image Wrapper for Consistency */
+.project-card .image-wrapper {
+  width: 100%;
+  height: 180px; /* Fixed image height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8; /* Light gray background */
+  border-radius: 8px; /* Optional: rounded edges */
+  margin: 10px 0; /* Space around the image */
+  padding: 15px; /* Padding inside the wrapper */
+  box-sizing: border-box;
+}
+
+.project-card .image-wrapper img {
+  width: 100%; /* Fill wrapper width */
+  height: 100%; /* Fill wrapper height */
+  object-fit: contain; /* Ensure the image fits within the wrapper without cropping */
+  object-position: center;
 }
 
 /* Project Title */
 .project-card h3 {
   margin: 10px 0;
   color: #004085;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.1em; /* Adjust font size for balance */
+  font-weight: 600;
 }
 
 /* ProgressBar Section (Add spacing) */
@@ -54,10 +67,15 @@
 /* Responsive Design */
 @media (max-width: 600px) {
   .project-card {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 95%; /* Adjust width for smaller screens */
   }
 
-  .project-card img {
-    height: 150px; /* Adjust image height for smaller screens */
+  .project-card .image-wrapper {
+    height: 160px; /* Smaller height for images on small screens */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .project-card h3 {
+    font-size: 1em; /* Smaller heading font for smaller screens */
   }
 }

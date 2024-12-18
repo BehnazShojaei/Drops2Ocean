@@ -15,10 +15,12 @@ function ProjectCard(props) {
         <div className="project-card">
             <Link to={projectLink}>
                 <h3>{projectData.title}</h3>
-                <img src={image} alt="project visual" />
+                <div className="image-wrapper">
+                    <img src={image} alt="project visual" />
+                </div>
             </Link>
 
-            <ProgressBar goal={projectData.goal} pledges={projectData.pledges ?? []} />
+            <ProgressBar goal={projectData.goal} projectId={projectData.id} pledges={projectData.pledges ?? []} />
 
         </div>
 

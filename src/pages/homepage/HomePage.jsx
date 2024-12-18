@@ -17,7 +17,6 @@ function HomePage() {
   //question if i am using a hook then why i need again to check isloading and error here?
   //cz the hook is not handling rendering. it only provide data and state and here we decide what to do with them
 
-  console.log("TTTTTTTTTT", projects);
   return (
     <>
       {/* Hero Section */}
@@ -35,7 +34,7 @@ function HomePage() {
         {/* console.log(projectData); */}
         {/* render projects */}
         {projects.map((projectData, index) => {
-          return <ProjectCard key={index} projectData={projectData} pledges />
+          return <ProjectCard key={index} projectData={projectData} customClass="home-page" />
         })}
       </div>
     </>
