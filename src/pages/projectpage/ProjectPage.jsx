@@ -4,8 +4,9 @@ import useProject from "../../hooks/use-project.js";
 import loadingGif from "../../assets/loading.webp";
 import MakePledgeForm from "../../components/PledgeForm.jsx";
 import "../projectpage/ProjectPage.css";
-import ProjectCard from "../../components/ProjectCard.jsx";
+// import ProjectCard from "../../components/ProjectCard.jsx";
 import ProgressBar from "../../components/ProgressBar.jsx";
+import EditProjectForm from "../../components/EditProjectForm.jsx";
 
 function ProjectPage() {
     // Get project ID from URL
@@ -16,10 +17,28 @@ function ProjectPage() {
 
     // State to toggle pledge form visibility
     const [showPledgeForm, setShowPledgeForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [deleteError, setDeleteError] = useState(null);
 
     // Toggle function for PledgeForm
     const handlePledgeRequest = () => {
         setShowPledgeForm(!showPledgeForm);
+    };
+
+    // Toggle Edit Form
+    const toggleEditForm = () => setShowEditForm((prev) => !prev);
+
+    // Delete Project Handler
+    const handleDelete = async () => {
+        if (confirm("Are you sure you want to delete this project?")) {
+            try {
+                await deleteProject(projectId);
+                alert("Project deleted successfully!");
+                window.location.href = "/";
+            } catch (err) {
+                setDeleteError(err.message);
+            }
+        }
     };
 
     // Fetch username dynamically based on supporter ID
@@ -131,6 +150,12 @@ function ProjectPage() {
                     </ul>
                 </div>
             </div>
+            {/* Edit and Delete Buttons */}
+            <div className="project-actions">
+                <button onClick={toggleEditForm} className="button">Edit</button>
+                <button onClick={handleDelete} className="button delete-button">Delete</button>
+            </div>
+            {deleteError && <p className="error-message">{deleteError}</p>}
 
             {/* Pledge Form */}
             {showPledgeForm && (
@@ -139,6 +164,18 @@ function ProjectPage() {
                     <button onClick={handlePledgeRequest} className="button">
                         Cancel
                     </button>
+                </div>
+            )}
+            {/* Edit Form */}
+            {showEditForm && (
+                <div className="edit-form-container">
+                    <EditProjectForm
+                        project={project}
+                        onUpdateSuccess={() => {
+                            refetch();
+                            toggleEditForm();
+                        }}
+                    />
                 </div>
             )}
         </div>

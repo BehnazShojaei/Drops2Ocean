@@ -2,19 +2,20 @@
 .progress-container {
     width: 100%;
     background-color: #f3f3f3; /* Light gray background */
-    border-radius: 8px;
+    border-radius: 12px; /* Rounded edges */
     overflow: hidden;
     margin: 20px auto;
     position: relative; /* Enables child positioning */
+    height: 30px; /* Taller progress bar */
     font-family: Arial, sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* The dynamic progress bar */
 .progress-bar {
-    height: 20px;
-    background-color: #4caf50; /* Green for progress */
-    transition: width 0.5s ease;
+    height: 100%;
+    background-color: #4caf50; /* Default green progress color */
+    transition: width 0.5s ease; /* Smooth width transition */
 }
 
 /* Text overlay inside the progress bar */
@@ -27,19 +28,21 @@
     display: flex; /* Centers text both vertically and horizontally */
     justify-content: center;
     align-items: center;
-    color: #fff; /* White text for contrast */
-    font-size: 14px;
+    color: #ffffff; /* White text for contrast */
+    font-size: 16px; /* Slightly larger text */
     font-weight: bold;
-    z-index: 1; /* Ensures text is above the progress bar */
+    z-index: 1; /* Ensure text is above the progress bar */
+    text-align: center;
 }
 
-/* Optional: Responsive design */
+
+/* Optional: Responsive design for small screens */
 @media (max-width: 600px) {
-    .progress-bar {
-        height: 15px;
+    .progress-container {
+        height: 15px; /* Reduce progress bar height */
     }
 
     .progress-text {
-        font-size: 12px;
+        font-size: 12px; /* Smaller text for small screens */
     }
 }

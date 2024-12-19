@@ -111,3 +111,44 @@
   border: 1px solid #ddd;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+
+/* Loading spinner container */
+div img {
+  display: block;
+  margin: 50px auto;
+  width: 80px;
+  height: 80px;
+}
+
+/* Error message styling */
+p {
+  color: #ff4d4f;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Progress Bar */
+.progress-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 20px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #40a9ff;
+  transition: width 0.5s ease;
+}
+
+.progress-text {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}

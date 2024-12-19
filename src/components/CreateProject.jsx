@@ -13,17 +13,17 @@ const projectSchema = z.object({
     projecttitle: z.string().min(1, { message: "Title required*" }),
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
-    projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
+    // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
 
     //for now I put image url until i figure out backend upload media
-    // projectimage:
-    //     z.instanceof(File)
-    //         .optional()
-    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-    //         .refine(
-    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
-    //         ),
+    projectimage:
+        z.instanceof(File)
+            .optional()
+            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+            .refine(
+                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+                "Accepted file types: .jpg, .jpeg, .png, and .webp"
+            ),
 });
 
 function CreateProject() {
@@ -83,9 +83,9 @@ function CreateProject() {
 
             formData.append("is_open", true);
             formData.append("date_created", projectInfo.date_created);
-            // if (projectInfo.projectimage) {
-            //     formData.append("image", projectInfo.projectimage);
-            // }
+            if (projectInfo.projectimage) {
+                formData.append("image", projectInfo.projectimage);
+            }
 
             const response = await postProject(formData);
 

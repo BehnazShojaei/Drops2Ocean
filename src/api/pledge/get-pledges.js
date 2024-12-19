@@ -25,3 +25,6 @@ export default getPledges;
 
 
 
+//on pledges endpoint there are list of all pledges with pledge id, there is no category to check projectid. I will use get project/project id pledges:[amount]
+
+
