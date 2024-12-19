@@ -33,20 +33,3 @@ export default function useProject(projectId) {
     return { project, isLoading, error, refetch: fetchProject }; // Expose refetch
   }
 
-//   useEffect(() => {
-//     // Here we pass the projectId to the getProject function.
-//     getProject(projectId)
-//       .then((project) => {
-//         setProject(project);
-//         setIsLoading(false);
-//       })
-//       .catch((error) => {
-//         setError(error);
-//         setIsLoading(false);
-//       });
-
-//     // This time we pass the projectId to the dependency array so that the hook will re-run if the projectId changes.
-//   }, [projectId]);
-
-//   return { project, isLoading, error };
-// }

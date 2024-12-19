@@ -3,7 +3,7 @@ import "./ProgressBar.css";
 import usePledges from "../hooks/use-pledges";
 
 function ProgressBar({ goal, projectId }) {
-    // Destructure totalAmount from the hook
+
     const { totalAmount, isLoading, error } = usePledges(projectId);
 
     if (isLoading) return <div>Loading...</div>;

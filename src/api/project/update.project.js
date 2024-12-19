@@ -1,24 +1,27 @@
-async function updateProject(projectId) {
+async function updateProject(projectId, payload ={}) {
+    //using payload better than passing single object
     const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}`;
 
-    const response = await fetch(url, { method: "PUT" });
-
-    if (!response.ok) {
-        const fallbackError = "Error updating a project";
-
-        const data = await response.json().catch(() => {
-            throw new Error(fallbackError);
-        });
-        const errorMessage = data?.detail ?? fallbackError;
-        throw new Error(errorMessage);
-    }
+    try{
+        
+        const response = await fetch(url,
+            { method: "PUT" ,
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(payload),});
+             
+            if (!response.ok) {
+                const fallbackError = "Error updating the project";
+                const data = await response.json().catch(() => ({ detail: fallbackError }));
+                throw new Error(data.detail || fallbackError);}
     
-    return await response.json();
+            return await response.json();
+        
+        } catch (error) {
+            console.error("Update Project Error:", error.message);
+            throw error;
+        }
 }
+    
 
 export default updateProject;
 
-    
-
-
-  
