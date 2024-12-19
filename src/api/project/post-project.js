@@ -4,14 +4,19 @@ async function postProject(formData) {
     const url = `${import.meta.env.VITE_API_URL}/projects/`;
     const token = window.localStorage.getItem("token");
 
+    if (!token) {
+        throw new Error("Authorization token not found. Please log in again.");
+    }
+
 
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
+             
                 "Authorization": `Token ${token}`,
             },
-            body: formData, // Convert to JSON format
+            body: formData, 
                 });
 
 

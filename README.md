@@ -25,9 +25,14 @@ Drops2Ocean is a platform dedicated to supporting individuals in advancing their
 - Enable media upload (has been disabled for submissions, need some more work from backend)
 - progress bar
 - Error handling for making projects/pledges
-- Error handling for login/signup
-- Different navbar display for non-user/user
-- Show/noShow form option on the same page
+- Error handling for login
+- ***
+
+## **Features**
+
+- Crowdfunding functionality for employability goals.
+- Progress tracking and status updates for campaigns.
+- User pledge and commenting system.
 
 ---
 

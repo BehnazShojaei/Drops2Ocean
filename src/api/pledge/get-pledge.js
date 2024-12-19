@@ -14,7 +14,6 @@ async function getPledge(pledgeId) {
         const errorMessage = data?.detail ?? fallbackError;
         throw new Error(errorMessage);
     }
-    console.log("ongetpledgenonsenseeeee");
     return await response.json();
 }
 

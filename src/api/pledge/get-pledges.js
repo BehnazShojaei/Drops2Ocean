@@ -18,7 +18,6 @@ async function getPledges(projectId = null) {
         const errorMessage = data?.detail ?? fallbackError;
         throw new Error(errorMessage);
     }
-    console.log("sdfadfgdbhjbvfgyudh");      
     return await response.json();
 }
 
