@@ -153,6 +153,7 @@ function CreateProject() {
                         id="projectgoal"
                         placeholder="Enter project goal"
                         onChange={handleChange}
+                        min="1"
                         value={projectInfo.projectgoal}
                         required
                     />
@@ -168,7 +169,7 @@ function CreateProject() {
                     />
                 </div>
 
-                <button className="create-btn" type="submit" disabled={isSubmitting}>
+                <button className="button" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Create"}
                 </button></form>
         </div >
