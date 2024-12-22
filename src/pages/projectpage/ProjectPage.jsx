@@ -121,6 +121,13 @@ function ProjectPage() {
                     <button onClick={handlePledgeRequest} className="button">
                         Make a Pledge
                     </button>
+                    {/* Edit and Delete Buttons */}
+                    <div className="project-actions">
+                        <button onClick={toggleEditForm} className="button">Edit</button>
+                        <button onClick={handleDelete} className="button delete-button">Delete</button>
+                    </div>
+                    {deleteError && <p className="error-message">{deleteError}</p>}
+
                 </div>
 
                 {/* Right Side */}
@@ -150,12 +157,6 @@ function ProjectPage() {
                     </ul>
                 </div>
             </div>
-            {/* Edit and Delete Buttons */}
-            <div className="project-actions">
-                <button onClick={toggleEditForm} className="button">Edit</button>
-                <button onClick={handleDelete} className="button delete-button">Delete</button>
-            </div>
-            {deleteError && <p className="error-message">{deleteError}</p>}
 
             {/* Pledge Form */}
             {showPledgeForm && (

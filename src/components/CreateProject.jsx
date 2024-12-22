@@ -36,9 +36,7 @@ function CreateProject() {
         projectdescription: "",
         projectgoal: "",
         projectimageurl: "",
-
-        // projectimage: null,
-        is_open: "true",
+        is_open: true,
         date_created: new Date().toISOString(),
     });
 
@@ -81,7 +79,7 @@ function CreateProject() {
             formData.append("goal", projectInfo.projectgoal);
             formData.append("image_url", projectInfo.projectimageurl);
 
-            formData.append("is_open", true);
+            formData.append("is_open", projectInfo.is_open);
             formData.append("date_created", projectInfo.date_created);
             if (projectInfo.projectimage) {
                 formData.append("image", projectInfo.projectimage);

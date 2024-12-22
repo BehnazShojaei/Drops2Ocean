@@ -120,7 +120,7 @@ function EditProjectForm({ project, onUpdateSuccess }) {
                 onChange={handleChange}
             />
 
-            <button type="submit" disabled={isSubmitting} className="create-btn">
+            <button type="submit" disabled={isSubmitting} className="button">
                 {isSubmitting ? "Updating..." : "Update"}
             </button>
         </form>
