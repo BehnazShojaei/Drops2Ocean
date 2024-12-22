@@ -13,8 +13,7 @@ async function postSignUp(username, password) {
             },
             body: JSON.stringify({
                 username: username,
-                password: password,
-            }),
+                password: password}),
         });
 
         // Check if response is not ok and throw an error
@@ -22,6 +21,8 @@ async function postSignUp(username, password) {
             const errorData = await response.json().catch(() => {
                 throw new Error("Failed to parse error message.");
             });
+            console.error("Backend Error Details:", errorData);
+
             const errorMessage = errorData?.detail ?? "Sign-up failed. Please try again.";
             throw new Error(errorMessage);
         }

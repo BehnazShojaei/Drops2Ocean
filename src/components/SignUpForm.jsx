@@ -35,8 +35,7 @@ function SignUpForm() {
         }));
         setErrorMessage("");
     };
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const result = signUpSchema.safeParse(credentials);
@@ -47,12 +46,17 @@ function SignUpForm() {
             return;
         }
 
-        postSignUp(credentials.username, credentials.password).then(() => {
-            navigate("/login");
-        })
-            .catch(() => {
-                setErrorMessage("Sign-up failed. Please try again.");
-            });
+        try {
+            // Call postSignUp and wait for the response
+            await postSignUp(credentials.username, credentials.password);
+            // Navigate to the login page with a success message
+            console.log("showSomething", "signup is done");
+            navigate("/login", { state: { message: "Sign-up successful! Please log in." } });
+        } catch (error) {
+            // Display the error message from postSignUp
+            setErrorMessage(error.message || "Sign-up failed. Please try again.");
+        }
+
     };
 
     return (
