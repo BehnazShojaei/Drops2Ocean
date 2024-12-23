@@ -14,16 +14,16 @@ const projectSchema = z.object({
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
     // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
-
+    projectimage: z.string().min(1, { message: "Image field can't be empty." }),
     //for now I put image url until i figure out backend upload media
-    projectimage:
-        z.instanceof(File)
-            .optional()
-            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-            .refine(
-                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-                "Accepted file types: .jpg, .jpeg, .png, and .webp"
-            ),
+    // projectimage:
+    //     z.instanceof(File)
+    //         .optional()
+    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+    //         .refine(
+    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
+    //         ),
 });
 
 function CreateProject() {
@@ -35,7 +35,7 @@ function CreateProject() {
         projecttitle: "",
         projectdescription: "",
         projectgoal: "",
-        projectimageurl: "",
+        projectimage: null,
         is_open: true,
         date_created: new Date().toISOString(),
     });
@@ -45,14 +45,20 @@ function CreateProject() {
 
 
     const handleChange = (event) => {
-        const { id, value, files, type } = event.target;
-
-        setProjectInfo((prev) => ({
-            ...prev,
-            [id]: type === "file" ? files[0] : value,
-            //if there is a file upload it, this could be a place where we enaable multiple or single upload. 
-        }));
+        const { id, value, type, files } = event.target;
+        if (type === "file") {
+            setProjectInfo((prevProject) => ({
+                ...prevProject,
+                [id]: files[0],
+            }));
+        } else {
+            setProjectInfo((prevProject) => ({
+                ...prevProject,
+                [id]: value,
+            }));
+        }
     };
+
 
 
 
@@ -77,10 +83,10 @@ function CreateProject() {
             formData.append("title", projectInfo.projecttitle);
             formData.append("description", projectInfo.projectdescription);
             formData.append("goal", projectInfo.projectgoal);
-            formData.append("image_url", projectInfo.projectimageurl);
-
             formData.append("is_open", projectInfo.is_open);
             formData.append("date_created", projectInfo.date_created);
+
+
             if (projectInfo.projectimage) {
                 formData.append("image", projectInfo.projectimage);
             }
@@ -160,10 +166,14 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        type="file"
+                        // type="file"
+                        type="url"
                         id="projectimage"
-                        accept="image/jpeg, image/png, image/webp"
+                        placeholder="Enter Image URL"
+
+                        // accept="image/jpeg, image/png, image/webp"
                         onChange={handleChange}
+                        required
                     />
                 </div>
 

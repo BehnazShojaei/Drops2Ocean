@@ -7,6 +7,7 @@ import "../projectpage/ProjectPage.css";
 // import ProjectCard from "../../components/ProjectCard.jsx";
 import ProgressBar from "../../components/ProgressBar.jsx";
 import EditProjectForm from "../../components/EditProjectForm.jsx";
+import deleteProject from "../../api/project/delete-project.js"
 
 function ProjectPage() {
     // Get project ID from URL
@@ -124,7 +125,7 @@ function ProjectPage() {
                     {/* Edit and Delete Buttons */}
                     <div className="project-actions">
                         <button onClick={toggleEditForm} className="button">Edit</button>
-                        <button onClick={handleDelete} className="button delete-button">Delete</button>
+                        <button onClick={handleDelete} className="button">Delete</button>
                     </div>
                     {deleteError && <p className="error-message">{deleteError}</p>}
 
