@@ -33,6 +33,9 @@ Drops2Ocean is a platform dedicated to supporting individuals in advancing their
 - Crowdfunding functionality for employability goals.
 - Progress tracking and status updates for campaigns.
 - User pledge and commenting system.
+- Delete project will close the project, but not delete the project card
+- Edit project available
+- uploading media is a work on progress from backend.
 
 ---
 

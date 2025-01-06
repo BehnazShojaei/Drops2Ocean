@@ -11,17 +11,18 @@ body {
     background-color: #ffffff;
     max-width: 500px; /* Matches your title box */
     margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border-radius: 10px;
     text-align: center;
 }
 
 /* Project Title */
 .project-form-container h1 {
     color: #004085; /* Navy blue */
-    font-size: 1.8em;
+    font-size: 2em;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 /* Input Fields */
@@ -29,63 +30,112 @@ input[type="text"],
 input[type="number"], 
 input[type="url"], /* Style for URL input */
 textarea, 
-/* input[type="file"]  */ 
-/* put it back once media is enable */
-{
+input[type="password"], /* Added password input styling */
+select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px 15px; /* Uniform padding for better appearance */
+    margin: 15px 0; /* Spaced margin for consistent spacing */
+    border: 1.5px solid #ccc;
+    border-radius: 8px; /* Rounded corners for modern look */
     font-size: 1em;
     box-sizing: border-box;
     display: block;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus State for Inputs */
+input:focus, 
+textarea:focus, 
+select:focus {
+    border-color: #1E3A8A; /* Navy blue focus */
+    box-shadow: 0 0 5px rgba(30, 58, 138, 0.5); /* Slight glow effect */
+    outline: none; /* Remove default outline */
 }
 
 /* Textarea Styling */
 textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px; /* Adjusted height for better UX */
+    line-height: 1.5; /* Better readability */
 }
 
-/* Create Button */
+/* Create Button
 .create-btn {
-    background-color: #1E3A8A; /* Navy blue like Sign Up */
+    background-color: #1E3A8A; 
     color: #fff;
     border: none;
-    width: 100%; /* Full width like the other buttons */
-    padding: 10px;
-    margin-top: 15px;
-    font-size: 1em;
+    width: 100%; 
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 1.1em;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    transition: background 0.3s ease;
-}
+    transition: background-color 0.3s ease, transform 0.2s ease;
+} */
 
 .create-btn:hover {
-    background-color: rgb(3, 86, 111); /* Slightly darker navy blue */
+    background-color: rgb(3, 86, 111); 
+    transform: translateY(-2px); 
 }
 
-/* File Upload Input */
-/* input[type="file"] {
-    border: none;
-    padding-left: 0;
-} */
+.create-btn:active {
+    transform: translateY(1px); 
+}
 
 /* Label Styling */
 label {
     display: block;
     text-align: left;
-    font-size: 1em;
+    font-size: 1.1em; 
     color: #555;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold; 
+}
+
+/* File Upload Input */
+input[type="file"] {
+    border: none;
+    padding: 8px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* Error Message Styling */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Success Message Styling */
+.success-message {
+    color: green;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {
     .project-form-container {
         width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    input, textarea, select {
+        font-size: 0.9em;
+    }
+
+    .create-btn {
+        font-size: 1em;
     }
 }

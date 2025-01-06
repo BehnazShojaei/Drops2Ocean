@@ -35,10 +35,8 @@ function CreateProject() {
         projecttitle: "",
         projectdescription: "",
         projectgoal: "",
-        projectimageurl: "",
-
-        // projectimage: null,
-        is_open: "true",
+        projectimage: null,
+        is_open: true,
         date_created: new Date().toISOString(),
     });
 
@@ -47,14 +45,20 @@ function CreateProject() {
 
 
     const handleChange = (event) => {
-        const { id, value, files, type } = event.target;
-
-        setProjectInfo((prev) => ({
-            ...prev,
-            [id]: type === "file" ? files[0] : value,
-            //if there is a file upload it, this could be a place where we enaable multiple or single upload. 
-        }));
+        const { id, value, type, files } = event.target;
+        if (type === "file") {
+            setProjectInfo((prevProject) => ({
+                ...prevProject,
+                [id]: files[0],
+            }));
+        } else {
+            setProjectInfo((prevProject) => ({
+                ...prevProject,
+                [id]: value,
+            }));
+        }
     };
+
 
 
 
@@ -83,9 +87,11 @@ function CreateProject() {
 
             formData.append("is_open", true);
             formData.append("date_created", projectInfo.date_created);
-            // if (projectInfo.projectimage) {
-            //     formData.append("image", projectInfo.projectimage);
-            // }
+
+
+            if (projectInfo.projectimage) {
+                formData.append("image", projectInfo.projectimage);
+            }
 
             const response = await postProject(formData);
 
@@ -153,6 +159,7 @@ function CreateProject() {
                         id="projectgoal"
                         placeholder="Enter project goal"
                         onChange={handleChange}
+                        min="1"
                         value={projectInfo.projectgoal}
                         required
                     />
@@ -161,14 +168,18 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        type="file"
+                        // type="file"
+                        type="url"
                         id="projectimage"
-                        accept="image/jpeg, image/png, image/webp"
+                        placeholder="Enter Image URL"
+
+                        // accept="image/jpeg, image/png, image/webp"
                         onChange={handleChange}
+                        required
                     />
                 </div>
 
-                <button className="create-btn" type="submit" disabled={isSubmitting}>
+                <button className="button" type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Create"}
                 </button></form>
         </div >
