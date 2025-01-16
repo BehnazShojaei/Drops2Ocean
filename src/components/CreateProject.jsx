@@ -86,7 +86,7 @@ function CreateProject() {
             // formData.append("image", projectInfo.projectimageurl);
 
             formData.append("is_open", true);
-            formData.append("date_created", projectInfo.date_created);
+            // formData.append("date_created", projectInfo.date_created);
 
 
             if (projectInfo.projectimage) {
@@ -168,15 +168,17 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        // type="file"
-                        type="url"
+                        type="file"
+                        // type="url"
                         id="projectimage"
-                        placeholder="Enter Image URL"
+                        // placeholder="Enter Image URL"
 
-                        // accept="image/jpeg, image/png, image/webp"
+                        accept="image/jpeg, image/png, image/webp"
                         onChange={handleChange}
-                        required
+                    // required
                     />
+                    <p>Accepted file types: .jpg, .jpeg, .png, .webp (Max size: 5MB)</p>
+
                 </div>
 
                 <button className="button" type="submit" disabled={isSubmitting}>
