@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import "./ProjectCard.css";
-// import { useState } from "react";
 import ProgressBar from "./ProgressBar.jsx";
 
 
 function ProjectCard(props) {
     const { projectData, customClass = "" } = props;
     const projectLink = `project/${projectData.id}`;
-    const image = `${projectData.image}` ?? "";
+    const image = `${projectData.image_b64}` ?? "";
 
 
     return (
