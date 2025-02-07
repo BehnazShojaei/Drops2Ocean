@@ -6,7 +6,7 @@ import { z } from "zod";
 
 function LoginForm() {
     const navigate = useNavigate();
-    const { setAuth } = useAuth(); // not sure?? unused `auth`
+    const { setAuth } = useAuth();
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -76,7 +76,7 @@ function LoginForm() {
                     value={credentials.password}
                 />
             </div>
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error */}
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             <button className="button" type="submit">Login</button>
         </form>
     );
