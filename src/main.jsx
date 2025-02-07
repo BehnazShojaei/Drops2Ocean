@@ -8,11 +8,12 @@ import ProjectPage from "./pages/projectpage/ProjectPage.jsx";
 import LoginPage from "./pages/userpage/LoginPage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider.jsx";
-import SignUpForm from "./components/SignUpForm.jsx";
 import NotFoundPage from "./pages/homepage/NotFoundPage.jsx";
 import MakePledgeForm from "./components/PledgeForm.jsx";
 import NewProjectPage from "./pages/projectpage/NewProjectPage.jsx";
 import UserProfile from "./components/UserProfile.jsx"
+import SignupPage from "./pages/userpage/SignupPage.jsx";
+
 // Here we create our router and tell it whats pages to render at what path
 const router = createBrowserRouter([
   // These are the three routes!
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage /> },
       { path: "/project/:id", element: <ProjectPage /> },
       { path: "/newproject", element: <NewProjectPage /> }, // Fixed this line?
-      { path: "/signup", element: <SignUpForm /> },
+      { path: "/signup", element: <SignupPage /> },
       { path: "*", element: <NotFoundPage />, },
       { path: "/pledge", element: < MakePledgeForm /> },
       { path: "/profile", element: < UserProfile /> },

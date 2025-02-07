@@ -35,6 +35,8 @@ function SignUpForm() {
         }));
         setErrorMessage("");
     };
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -47,13 +49,10 @@ function SignUpForm() {
         }
 
         try {
-            // Call postSignUp and wait for the response
             await postSignUp(credentials.username, credentials.password);
-            // Navigate to the login page with a success message
             console.log("showSomething", "signup is done");
             navigate("/login", { state: { message: "Sign-up successful! Please log in." } });
         } catch (error) {
-            // Display the error message from postSignUp
             setErrorMessage(error.message || "Sign-up failed. Please try again.");
         }
 
@@ -61,7 +60,7 @@ function SignUpForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error in red */}
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
