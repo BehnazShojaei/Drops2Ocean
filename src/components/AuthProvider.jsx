@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 
-// Here we create the Context
 export const AuthContext = createContext();
 
 // Here we create the component that will wrap our app, this means all it children can access the context using are hook.

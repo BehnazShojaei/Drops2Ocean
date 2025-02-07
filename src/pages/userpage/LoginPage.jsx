@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import LoginForm from "/src/components/LoginForm.jsx";
+import LoginForm from "../../components/LoginForm.jsx";
+
 import SignUpForm from "../../components/SignUpForm";
 import "/src/pages/userpage/LoginPage.css";
 import { useNavigate } from "react-router-dom";
@@ -23,9 +24,9 @@ function LoginPage() {
                 <h2>Login</h2>
                 <p>Willing to create a project or make a pledge? Please login below:</p>
                 <LoginForm />
-                <button onClick={() => navigate("/forgot-password")} className="button forgot-password">
+                {/* <button onClick={() => navigate("/forgot-password")} className="button forgot-password">
                     Forgot Password?
-                </button>
+                </button> */}
 
                 <p>Or</p>
             </div>

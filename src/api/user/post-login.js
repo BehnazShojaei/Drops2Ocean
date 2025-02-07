@@ -28,9 +28,8 @@ async function postLogin(username, password) {
   } 
   
   catch (error) {
-    // Log the error for debugging (optional)
     console.error("Error during login:", error);
-    throw error; // Re-throw the error for the calling function to handle
+    throw error; 
   }
 }
 
