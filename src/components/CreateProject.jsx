@@ -59,8 +59,10 @@ function CreateProject() {
         reader.addEventListener(
             "load",
             () => {
-                // convert image file to base64 string
+                // convert image file to base64 string save string and show imageb64 on project card, browser will render an image 
                 setImageb64(reader.result)
+                console.log("Converted Image (Base64):", reader.result);
+
             },
             false,
         );
@@ -70,13 +72,13 @@ function CreateProject() {
         }
     }
 
+
     const handleSubmit = async (event) => {
-        event.preventDefault(); //avoid default submission
-        setErrorMessage([]); //initialize
+        event.preventDefault();
+        setErrorMessage([]);
         setIsSubmitting(true);
         console.log(imageb64)
-
-        const result = projectSchema.safeParse(projectInfo); //check error with zod
+        const result = projectSchema.safeParse(projectInfo);
 
         if (!result.success) {
 
@@ -86,27 +88,42 @@ function CreateProject() {
             return;
         };
 
+        // try {
+        //     // Build FormData for file uploads
+        //     const formData = new FormData();
+        //     formData.append("title", projectInfo.projecttitle);
+        //     formData.append("description", projectInfo.projectdescription);
+        //     formData.append("goal", projectInfo.projectgoal);
+        //     formData.append("is_open", projectInfo.is_open);
+        //     formData.append("date_created", projectInfo.date_created);
+
+
+        //     if (imageb64) {
+        //         formData.append("image", imageb64);
+        //     }
+
         try {
-            // Build FormData for file uploads
-            const formData = new FormData();
-            formData.append("title", projectInfo.projecttitle);
-            formData.append("description", projectInfo.projectdescription);
-            formData.append("goal", projectInfo.projectgoal);
-            formData.append("is_open", projectInfo.is_open);
-            formData.append("date_created", projectInfo.date_created);
+            // Create JSON object for API
+            const projectData = {
+                title: projectInfo.projecttitle,
+                description: projectInfo.projectdescription,
+                goal: projectInfo.projectgoal,
+                is_open: projectInfo.is_open,
+                date_created: projectInfo.date_created,
+                image: imageb64,
+            };
 
 
-            if (imageb64) {
-                formData.append("image", imageb64);
-            }
 
-            const response = await postProject(formData);
-            console.log(response)
+            console.log("Sending project data:", projectData);
+
+
+            const response = await postProject(projectData);
+            console.log("API Response:", response);
 
             if (response && response.id) {
                 navigate(`/project/${response.id}`);
 
-                // after submit i want to go to project/:id 
             } else {
                 throw new Error("Project creation failed. Invalid response.");
 
@@ -119,12 +136,6 @@ function CreateProject() {
     };
 
 
-
-
-    //I decided to make upload image optional should take care of this section for conditional
-
-
-    // now time to change backend to accept upload and not the url lol I regret exploring this option bad time management behnaz joon
 
     return (
         <div className="project-form-container">

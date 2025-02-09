@@ -9,7 +9,7 @@ function ProjectCard(props) {
     const projectLink = `project/${projectData.id}`;
     const image = `${projectData.image}` ?? "";
 
-    console.log(image)
+    console.log('image in project card', image)
 
     return (
 
