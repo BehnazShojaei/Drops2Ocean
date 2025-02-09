@@ -114,6 +114,7 @@ function ProjectPage() {
             <div className="project-content">
                 {/* Left Side */}
                 <div className="project-left">
+                    {/* <img src={project.image} alt="Project visual" className="project-image" /> */}
                     <img src={project.image} alt="Project visual" className="project-image" />
 
                     {/* Progress Bar */}
