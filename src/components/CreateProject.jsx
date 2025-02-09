@@ -14,16 +14,16 @@ const projectSchema = z.object({
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
     // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
-    projectimage: z.string().min(1, { message: "Image field can't be empty." }),
+    // projectimage: z.string().min(1, { message: "Image field can't be empty." }),
     //for now I put image url until i figure out backend upload media
-    // projectimage:
-    //     z.instanceof(File)
-    //         .optional()
-    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-    //         .refine(
-    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
-    //         ),
+    projectimage:
+        z.instanceof(File)
+            .optional()
+            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+            .refine(
+                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+                "Accepted file types: .jpg, .jpeg, .png, and .webp"
+            )
 });
 
 function CreateProject() {
@@ -35,37 +35,46 @@ function CreateProject() {
         projecttitle: "",
         projectdescription: "",
         projectgoal: "",
-        projectimage: null,
+        // projectimage: null,
         is_open: true,
         date_created: new Date().toISOString(),
     });
 
     const [errorMessage, setErrorMessage] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false); //adding this so later I can use submitting loader or disable button
-
+    const [imageb64, setImageb64] = useState("");
 
     const handleChange = (event) => {
-        const { id, value, type, files } = event.target;
-        if (type === "file") {
-            setProjectInfo((prevProject) => ({
-                ...prevProject,
-                [id]: files[0],
-            }));
-        } else {
-            setProjectInfo((prevProject) => ({
-                ...prevProject,
-                [id]: value,
-            }));
-        }
+        const { id, value, } = event.target;
+        setProjectInfo((prevProject) => ({
+            ...prevProject,
+            [id]: value,
+        }));
     };
 
+    const handleFileUpload = (event) => {
+        const reader = new FileReader();
+        const img = event.target.files[0]
 
+        reader.addEventListener(
+            "load",
+            () => {
+                // convert image file to base64 string
+                setImageb64(reader.result)
+            },
+            false,
+        );
 
+        if (img) {
+            reader.readAsDataURL(img);
+        }
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault(); //avoid default submission
         setErrorMessage([]); //initialize
         setIsSubmitting(true);
+        console.log(imageb64)
 
         const result = projectSchema.safeParse(projectInfo); //check error with zod
 
@@ -87,11 +96,12 @@ function CreateProject() {
             formData.append("date_created", projectInfo.date_created);
 
 
-            if (projectInfo.projectimage) {
-                formData.append("image", projectInfo.projectimage);
+            if (imageb64) {
+                formData.append("image", imageb64);
             }
 
             const response = await postProject(formData);
+            console.log(response)
 
             if (response && response.id) {
                 navigate(`/project/${response.id}`);
@@ -107,6 +117,9 @@ function CreateProject() {
             setIsSubmitting(false);
         }
     };
+
+
+
 
     //I decided to make upload image optional should take care of this section for conditional
 
@@ -166,13 +179,13 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        // type="file"
-                        type="url"
+                        type="file"
+                        // type="url"
                         id="projectimage"
-                        placeholder="Enter Image URL"
+                        // placeholder="Enter Image URL"
 
-                        // accept="image/jpeg, image/png, image/webp"
-                        onChange={handleChange}
+                        accept="image/jpeg, image/png, image/webp"
+                        onChange={handleFileUpload}
                         required
                     />
                 </div>
