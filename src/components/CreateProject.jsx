@@ -14,16 +14,16 @@ const projectSchema = z.object({
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
     // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
-    projectimage: z.string().min(1, { message: "Image field can't be empty." }),
+    // projectimage: z.string().min(1, { message: "Image field can't be empty." }),
     //for now I put image url until i figure out backend upload media
-    // projectimage:
-    //     z.instanceof(File)
-    //         .optional()
-    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-    //         .refine(
-    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
-    //         ),
+    projectimage:
+        z.instanceof(File)
+            .optional()
+            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+            .refine(
+                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+                "Accepted file types: .jpg, .jpeg, .png, and .webp"
+            ),
 });
 
 function CreateProject() {
@@ -166,10 +166,10 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        // type="file"
-                        type="url"
+                        type="file"
+                        // type="url"
                         id="projectimage"
-                        placeholder="Enter Image URL"
+                        // placeholder="Enter Image URL"
 
                         // accept="image/jpeg, image/png, image/webp"
                         onChange={handleChange}
