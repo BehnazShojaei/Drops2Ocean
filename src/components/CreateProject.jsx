@@ -14,16 +14,15 @@ const projectSchema = z.object({
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
     // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
-    projectimage: z.string().min(1, { message: "Image field can't be empty." }),
-    //for now I put image url until i figure out backend upload media
-    // projectimage:
-    //     z.instanceof(File)
-    //         .optional()
-    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-    //         .refine(
-    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
-    //         ),
+    // projectimage: z.string().min(1, { message: "Image field can't be empty." }),
+    projectimage:
+        z.instanceof(File)
+            .optional()
+            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+            .refine(
+                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+                "Accepted file types: .jpg, .jpeg, .png, and .webp"
+            ),
 });
 
 function CreateProject() {
@@ -31,11 +30,13 @@ function CreateProject() {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
 
+    const [image, setImage] = useState("")
+
     const [projectInfo, setProjectInfo] = useState({
         projecttitle: "",
         projectdescription: "",
         projectgoal: "",
-        projectimage: null,
+        // projectimage: null,
         is_open: true,
         date_created: new Date().toISOString(),
     });
@@ -44,20 +45,49 @@ function CreateProject() {
     const [isSubmitting, setIsSubmitting] = useState(false); //adding this so later I can use submitting loader or disable button
 
 
+
+
     const handleChange = (event) => {
-        const { id, value, type, files } = event.target;
-        if (type === "file") {
-            setProjectInfo((prevProject) => ({
-                ...prevProject,
-                [id]: files[0],
-            }));
-        } else {
-            setProjectInfo((prevProject) => ({
-                ...prevProject,
-                [id]: value,
-            }));
-        }
+        const { id, value, } = event.target;
+        setProjectInfo((prevProject) => ({
+            ...prevProject,
+            [id]: value,
+        }));
     };
+
+
+    const handleFileUpload = (event) => {
+
+        const reader = new FileReader();
+        const img = event.target.files[0]
+
+        reader.addEventListener(
+            "Load",
+            () => {
+                setImage(reader.result)
+            },
+            false,
+        );
+
+        if (img) {
+            reader.readAsDataURL(img);
+        }
+    }
+
+    // const handleChange = (event) => {
+    //     const { id, value, type, files } = event.target;
+    //     if (type === "file") {
+    //         setProjectInfo((prevProject) => ({
+    //             ...prevProject,
+    //             [id]: files[0],
+    //         }));
+    //     } else {
+    //         setProjectInfo((prevProject) => ({
+    //             ...prevProject,
+    //             [id]: value,
+    //         }));
+    //     }
+    // };
 
 
 
@@ -66,6 +96,7 @@ function CreateProject() {
         event.preventDefault(); //avoid default submission
         setErrorMessage([]); //initialize
         setIsSubmitting(true);
+        console.log(image);
 
         const result = projectSchema.safeParse(projectInfo); //check error with zod
 
@@ -87,11 +118,16 @@ function CreateProject() {
             formData.append("date_created", projectInfo.date_created);
 
 
-            if (projectInfo.projectimage) {
-                formData.append("image", projectInfo.projectimage);
+            if (image) {
+                formData.append("image", image);
             }
 
+            // if (projectInfo.projectimage) {
+            //     formData.append("image", projectInfo.projectimage);
+            // }
+
             const response = await postProject(formData);
+            console.log(response)
 
             if (response && response.id) {
                 navigate(`/project/${response.id}`);
@@ -108,10 +144,8 @@ function CreateProject() {
         }
     };
 
-    //I decided to make upload image optional should take care of this section for conditional
 
 
-    // now time to change backend to accept upload and not the url lol I regret exploring this option bad time management behnaz joon
 
     return (
         <div className="project-form-container">
@@ -166,13 +200,13 @@ function CreateProject() {
                 <div>
                     <label htmlFor="projectimage">Upload Image:</label>
                     <input
-                        // type="file"
-                        type="url"
+                        type="file"
+                        // type="url"
                         id="projectimage"
                         placeholder="Enter Image URL"
 
-                        // accept="image/jpeg, image/png, image/webp"
-                        onChange={handleChange}
+                        accept="image/jpeg, image/png, image/webp"
+                        onChange={handleFileUpload}
                         required
                     />
                 </div>
