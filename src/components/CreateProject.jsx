@@ -30,7 +30,7 @@ function CreateProject() {
     const navigate = useNavigate();
     const { auth, setAuth } = useAuth();
 
-    const [image, setImage] = useState("")
+    const [imageb64, setImageb64] = useState("")
 
     const [projectInfo, setProjectInfo] = useState({
         projecttitle: "",
@@ -64,7 +64,7 @@ function CreateProject() {
         reader.addEventListener(
             "Load",
             () => {
-                setImage(reader.result)
+                setImageb64(reader.result)
             },
             false,
         );
@@ -96,7 +96,7 @@ function CreateProject() {
         event.preventDefault(); //avoid default submission
         setErrorMessage([]); //initialize
         setIsSubmitting(true);
-        console.log(image);
+        console.log(imageb64)
 
         const result = projectSchema.safeParse(projectInfo); //check error with zod
 
@@ -118,11 +118,15 @@ function CreateProject() {
             formData.append("date_created", projectInfo.date_created);
 
 
-            if (image) {
-                formData.append("image", image);
+            if (imageb64) {
+                formData.append("image", imageb64);
             }
 
             // if (projectInfo.projectimage) {
+            //     formData.append("image", projectInfo.projectimage);
+            // }
+
+            // if (image) {
             //     formData.append("image", projectInfo.projectimage);
             // }
 
@@ -203,7 +207,7 @@ function CreateProject() {
                         type="file"
                         // type="url"
                         id="projectimage"
-                        placeholder="Enter Image URL"
+                        // placeholder="Enter Image URL"
 
                         accept="image/jpeg, image/png, image/webp"
                         onChange={handleFileUpload}
