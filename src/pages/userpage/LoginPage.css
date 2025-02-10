@@ -52,6 +52,15 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
     box-sizing: border-box;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack by default */
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px;
+    width: 100%;
+}
 /* Unified Button Styling */
 .button {
     background-color: #1E3A8A; /* Unified button color */
