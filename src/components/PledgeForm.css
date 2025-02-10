@@ -1,6 +1,6 @@
 /* General Reset */
 * {
-    margin: 0;
+    margin: 80px;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -8,14 +8,15 @@
 
 /* Pledge Form Container */
 .pledge-form-container {
-    margin: 20px auto; /* Center the form under the image */
+    margin: 20px; 
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 50%; /* Limit form width to half the page */
-    max-width: 600px; /* Control form max size */
+    width: 48%; 
+    max-width: 600px; 
+    left: 0;
 }
 
 /* Form Title */
@@ -73,9 +74,9 @@
 /* Button Container */
 .button-container {
     display: flex;
-    justify-content: space-between; /* Align buttons side by side */
+    justify-content: space-between; 
     gap: 10px; /* Space between buttons */
-    margin-top: 15px; /* Spacing from inputs */
+    margin-top: 20px; /* Spacing from inputs */
 }
 
 .button {
@@ -86,11 +87,11 @@
     font-size: 16px;
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
-    line-height: 45px; /* Center text vertically */
+
 }
 
 .button:hover {

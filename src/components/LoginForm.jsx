@@ -4,8 +4,8 @@ import { useAuth } from "../hooks/use-auth.js";
 import postLogin from "../api/user/post-login.js";
 import { z } from "zod";
 
-function LoginForm() {
-    const navigate = useNavigate();
+function LoginForm({ loginButton, onLogin }) {
+    // const navigate = useNavigate();
     const { setAuth } = useAuth();
 
     const [credentials, setCredentials] = useState({
@@ -44,10 +44,10 @@ function LoginForm() {
             .then((response) => {
                 window.localStorage.setItem("token", response.token);
 
-                setAuth({
-                    token: response.token,
-                });
-                navigate("/");
+                setAuth({ token: response.token });
+                onLogin();
+
+                // navigate("/");
             })
             .catch(() => {
                 setErrorMessage("Invalid username or password. Please try again.");
@@ -77,7 +77,10 @@ function LoginForm() {
                 />
             </div>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            <button className="button" type="submit">Login</button>
+            {/* <button className="button" type="submit">Login</button> */}
+            <div className="button-container">
+                {loginButton}
+            </div>
         </form>
     );
 }
