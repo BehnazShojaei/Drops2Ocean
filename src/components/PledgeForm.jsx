@@ -13,7 +13,8 @@ const pledgeSchema = z.object({
 })
 
 
-function MakePledgeForm({ onPledgeSubmitted }) {
+function MakePledgeForm({ onPledgeSubmitted, handleCancel }) {
+
 
     // pass in supporterID as props to check logged in user
 
@@ -105,8 +106,9 @@ function MakePledgeForm({ onPledgeSubmitted }) {
             {success && <p style={{ color: "green" }}>{success}</p>}
 
 
+
             <form onSubmit={handleSubmit}>
-                <div>
+                <div >
                     <label htmlFor="amount">Amount:</label>
                     <input
                         type="number"
@@ -135,7 +137,16 @@ function MakePledgeForm({ onPledgeSubmitted }) {
                     />
                     <label htmlFor="anonymous">Pledge Anonymously</label>
                 </div>
-                <button className="button" type="submit">Submit Pledge</button>
+                {/* <button className="button" type="submit">Submit Pledge</button> */}
+
+
+                <div className="pledge-buttons">
+                    <button className="button submit-btn" type="submit">Submit Pledge</button>
+                    <button className="button cancel-btn" type="button" onClick={handleCancel}>
+                        Cancel
+                    </button>
+                </div>
+
             </form>
         </div>
     );

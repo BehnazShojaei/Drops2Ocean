@@ -1,12 +1,13 @@
 /* Container */
 .project-page-container {
-  max-width: 1200px;
-  margin: 20px auto;
+  /* max-width: 1200px; */
+  /* margin: 20px; */
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   font-family: Arial, sans-serif;
+  right : 0;
 }
 
 /* Project Title */
@@ -66,7 +67,7 @@
   margin-bottom: 20px;
 }
 
-.pledge-btn {
+.button {
   padding: 10px 20px;
   font-size: 1em;
   font-weight: bold;
@@ -78,11 +79,11 @@
   transition: background-color 0.3s ease;
 }
 
-.pledge-btn:hover {
+.button:hover {
   background-color: #0056b3;
 }
 
-.pledge-btn.cancel {
+.button.cancel {
   background-color: #6c757d;
 }
 

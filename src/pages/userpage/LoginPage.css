@@ -57,9 +57,9 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
     background-color: #1E3A8A; /* Unified button color */
     color: #fff;
     border: none;
-    width: 100%;
+    width: 40%;
     padding: 10px 0;
-    margin-top: 10px;
+    margin: 15px;
     font-size: 1em;
     font-weight: bold;
     text-align: center;
