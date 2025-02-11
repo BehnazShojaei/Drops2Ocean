@@ -9,7 +9,7 @@ const projectSchema = z.object({
     projecttitle: z.string().min(1, { message: "Title required*" }),
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
-    projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
+    projectimage: z.string().optional()
 });
 
 function EditProjectForm({ project, onUpdateSuccess }) {
@@ -19,30 +19,58 @@ function EditProjectForm({ project, onUpdateSuccess }) {
         projecttitle: project.title,
         projectdescription: project.description,
         projectgoal: project.goal,
-        projectimageurl: project.image_url,
     });
     const [errorMessage, setErrorMessage] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [imageb64, setImageb64] = useState("");
+
 
     const handleChange = (event) => {
-        const { id, value } = event.target;
-        setProjectInfo((prev) => ({ ...prev, [id]: value }));
+        const { id, value, } = event.target;
+        setProjectInfo((prevProject) => ({
+            ...prevProject,
+            [id]: value,
+        }));
     };
+
+    const handleFileUpload = (event) => {
+        const reader = new FileReader();
+        const img = event.target.files[0]
+
+        reader.addEventListener(
+            "load",
+            () => {
+                // convert image file to base64 string save string and show imageb64 on project card, browser will render an image 
+                setImageb64(reader.result)
+                console.log("Converted Image (Base64):", reader.result);
+
+            },
+            false,
+        );
+
+        if (img) {
+            reader.readAsDataURL(img);
+        }
+    }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setErrorMessage([]);
         setIsSubmitting(true);
 
-        const result = projectSchema.safeParse(projectInfo);
-
+        console.log(imageb64);
+        const result = projectSchema.safeParse({
+            ...projectInfo,
+            projectimage: imageb64,
+        });
 
         const payload = {
             title: projectInfo.projecttitle,
             description: projectInfo.projectdescription,
             goal: projectInfo.projectgoal,
-            completed: true, // If required
-            image_url: projectInfo.projectimageurl, // Uncomment if needed
+            completed: true,
+            projectimage: imageb64
         };
 
         console.log("Payload being sent to updateProject:", payload);
@@ -64,9 +92,9 @@ function EditProjectForm({ project, onUpdateSuccess }) {
                 description: projectInfo.projectdescription,
                 goal: projectInfo.projectgoal,
                 completed: true,
-                // image_url: projectInfo.projectimageurl,
-                // is_open: project.is_open,
+                image: imageb64
             });
+
             alert("Project updated successfully.");
             onUpdateSuccess();
         } catch (error) {
@@ -112,12 +140,14 @@ function EditProjectForm({ project, onUpdateSuccess }) {
                 required
             />
 
-            <label htmlFor="projectimageurl">Image URL:</label>
+            <label htmlFor="projectimage">Upload Image:</label>
             <input
-                type="url"
-                id="projectimageurl"
-                value={projectInfo.projectimageurl}
-                onChange={handleChange}
+                type="file"
+                id="projectimage"
+                accept="image/jpeg, image/png, image/webp"
+                onChange={handleFileUpload}
+
+            // value={projectInfo.projectimageurl}
             />
 
             <button type="submit" disabled={isSubmitting} className="button">
