@@ -124,17 +124,8 @@ input[type="text"], input[type="password"], input[type="confirmPassword"] {
     font-weight: bold;
 }
 
-/* Signup Form Container */
-.signup-container {
-    display: none; /* Hidden initially */
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
 
-.signup-container.active {
-    display: block; /* Show when toggled */
-}
+
 
 /* Navbar Styling (HomePage Navigation) */
 .navbar {

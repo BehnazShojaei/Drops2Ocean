@@ -1,11 +1,14 @@
 import SignUpForm from "../../components/SignUpForm";
+import "./SignupPage.css";
 
 function SignupPage() {
 
 
     return (
         <div className="signup-page">
-            <SignUpForm />
+            <div className="signup-container">
+                <SignUpForm />
+            </div>
         </div>
     )
 }

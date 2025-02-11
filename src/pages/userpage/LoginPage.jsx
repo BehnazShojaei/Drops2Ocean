@@ -10,7 +10,8 @@ function LoginPage() {
     const navigate = useNavigate();
 
     const handleSignUpClick = () => {
-        setShowSignUp(!showSignUp);
+        // setShowSignUp(!showSignUp);
+        navigate("/signup");
     };
     const handleLogin = () => {
         navigate("/homepage", { state: { showButtons: true } }); // Pass state to homepage
@@ -26,10 +27,10 @@ function LoginPage() {
 
                 <div className="button-container">
                     <LoginForm onLogin={handleLogin} />
-                    <p>Or</p>
+                    <p>New to Drops2Ocean? Sign up below!</p>
 
-                    <button onClick={handleSignUpClick} className="button secondary">
-                        Create a profile
+                    <button onClick={handleSignUpClick} className="button">
+                        Sign up
                     </button>
                 </div>
 
@@ -53,9 +54,9 @@ function LoginPage() {
 
             {/* Show the SignUpForm if showSignUp is true */}
             {showSignUp && (
-                <div className="signup-form">
+                <div className="button-container">
                     <h2>Create a profile</h2>
-                    <SignUpForm />
+                    {/* <SignUpForm /> */}
                 </div>
             )}
         </div>

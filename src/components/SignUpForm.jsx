@@ -13,6 +13,7 @@ function SignUpForm() {
     });
 
     const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const signUpSchema = z.object({
         username: z.string().min(3, { message: "Username must be at least 3 characters long." }),
@@ -50,8 +51,15 @@ function SignUpForm() {
 
         try {
             await postSignUp(credentials.username, credentials.password);
-            console.log("showSomething", "signup is done");
-            navigate("/login", { state: { message: "Sign-up successful! Please log in." } });
+            setSuccessMessage("Sign-up successful! Please log in.");
+
+            // console.log("showSomething", "signup is done");
+
+
+            setTimeout(() => {
+                navigate("/login", { state: { message: "Sign-up successful! Please log in." } });
+            }, 2000);
+
         } catch (error) {
             setErrorMessage(error.message || "Sign-up failed. Please try again.");
         }
@@ -61,6 +69,8 @@ function SignUpForm() {
     return (
         <form onSubmit={handleSubmit}>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
