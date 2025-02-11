@@ -161,12 +161,18 @@ function ProjectPage() {
 
             {/* Pledge Form */}
             {showPledgeForm && (
-                <div className="pledge-form-container">
-                    <MakePledgeForm onPledgeSubmitted={refetch} />
+                <>
+                    {/* <MakePledgeForm onPledgeSubmitted={refetch} />
                     <button onClick={handlePledgeRequest} className="button">
                         Cancel
-                    </button>
-                </div>
+                    </button> */}
+
+
+                    <MakePledgeForm
+                        onPledgeSubmitted={refetch}
+                        handleCancel={handlePledgeRequest}
+                    />
+                </>
             )}
             {/* Edit Form */}
             {showEditForm && (
