@@ -115,6 +115,7 @@ function ProjectPage() {
                 {/* Left Side */}
                 <div className="project-left">
                     <img src={project.image} alt="Project visual" className="project-image" />
+                    {/* <img src={`data:image/png;base64,${project.image}`} alt="Project visual" /> */}
 
                     {/* Progress Bar */}
                     <ProgressBar projectId={project.id} goal={project.goal} pledges={project.pledges} />

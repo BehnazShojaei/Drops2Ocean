@@ -3,7 +3,7 @@ async function updateProject(projectId, formData) {
         throw new Error("Project ID is required to update a project.");
     }
 
-    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}`;
+    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}/`;
     const token = window.localStorage.getItem("token");
 
     if (!token) {

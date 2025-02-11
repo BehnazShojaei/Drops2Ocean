@@ -1,6 +1,6 @@
 
 async function updateProject(projectId, payload = {}) {
-    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}`;
+    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}/`;
     const token = window.localStorage.getItem("token");
 
     try {

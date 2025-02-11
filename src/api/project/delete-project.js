@@ -1,5 +1,5 @@
 async function deleteProject(projectId) {
-    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}`;
+    const url = `${import.meta.env.VITE_API_URL}/projects/${projectId}/`;
     const token = window.localStorage.getItem("token");
 
     if (!token) {

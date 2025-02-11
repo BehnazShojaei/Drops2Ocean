@@ -13,17 +13,18 @@ const projectSchema = z.object({
     projecttitle: z.string().min(1, { message: "Title required*" }),
     projectgoal: z.coerce.number().positive(),
     projectdescription: z.string().min(3, { message: "Description required" }),
+    projectimage: z.string().optional()
     // projectimageurl: z.string().url({ message: "Valid URL required" }).optional(),
     // projectimage: z.string().min(1, { message: "Image field can't be empty." }),
     //for now I put image url until i figure out backend upload media
-    projectimage:
-        z.instanceof(File)
-            .optional()
-            .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
-            .refine(
-                (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
-                "Accepted file types: .jpg, .jpeg, .png, and .webp"
-            )
+    // projectimage:
+    //     z.instanceof(File)
+    //         .optional()
+    //         .refine((file) => !file || file.size <= MAX_FILE_SIZE, "Max file size is 5MB.")
+    //         .refine(
+    //             (file) => !file || ACCEPTED_IMAGE_TYPES.includes(file.type),
+    //             "Accepted file types: .jpg, .jpeg, .png, and .webp"
+    //         )
 });
 
 function CreateProject() {
@@ -77,8 +78,12 @@ function CreateProject() {
         event.preventDefault();
         setErrorMessage([]);
         setIsSubmitting(true);
-        console.log(imageb64)
-        const result = projectSchema.safeParse(projectInfo);
+        console.log(imageb64);
+        const result = projectSchema.safeParse({
+            ...projectInfo,
+            projectimage: imageb64,
+        });
+
 
         if (!result.success) {
 
